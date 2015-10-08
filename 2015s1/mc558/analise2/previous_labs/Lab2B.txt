@@ -1,0 +1,14 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratório 1 - Parte B: Muitos Caminhos e um Destino
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Primeiramente acha-se a ordem topológica do grafo. Em seguida,
+percorre-se o vetor da ordenação topológica a partir do nó de partida até
+encontrar o nó de chegada ou percorrer toda a ordenação.
+Cada nó tem um vetor GYR ( GREEN YELLOW RED ) que irá guardar de quantos cores 
+diferentes esse nó foi atingido. Assim, partindo do nó de partida, o vetor GYR
+dos seus vizinhos é incrementado de acordo com a cor da arresta que os une isso 
+se esse caminho puder ser traçado. 
+Quando finalmente o vetor da ordem topológica é percorrido por inteiro, a total de 
+caminhos possiveis ate o nó destino é a soma de GYR.

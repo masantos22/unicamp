@@ -1,0 +1,22 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratorio 5 Parte A: Algoritmo de Edmonds-Karp
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Para a resolução do problema foi criada uma matriz do 
+tipo struct para armazenar as arestas e os vertices 
+do grafo. Dessa maneira, a inserção e atualização das 
+arestas ocorre em O(1). A contra-partida porém é que 
+essa struct tem um campo next que transforma essa matriz 
+em uma lista de adjacencia o que custa O(n*n) o que torna
+o busca em largura mais eficiente e não afeta o desempenho 
+total do algoritmo, que é de O(VE^2).
+Após todas as inserções das arestas e arestas de retorno, 
+o algoritmo funciona de seguinte maneira:
+1 - Coloque o nó fonte na fila
+2 - Faça uma BFS a partir desse nó ate o nó fonte
+3 - Se existe caminho fonte->destino entao, atualize as arestas do grafo
+	(retirando a menor aresta do caminho encontrado,e atualizando
+	todas as outras arestas do caminho)
+4 - Senão: fim do algoritmo
+4 - Volte para 1

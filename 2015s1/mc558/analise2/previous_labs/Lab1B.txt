@@ -1,0 +1,13 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratório 1 - Parte B - Dominadores em Grafos Orientados (Relatório)
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Para solucionar o problema criou-se a matriz de dominadores assumindo que todos
+os nós dominavam todos os outros. 
+Em seguida, fez-se uma busca em largura do grafo original e armazena em um 
+vetor se o caminho 0 -> x existia.
+Na sequencia, para todos os nós x de G, cria-se o grafo H removendo-se todas 
+as arestas do nó x. Por fim, para todos os nós y do grafo, se existisse 
+caminho de 0 a y ou se x != y e existisse caminho de 0 a y em H então a matriz 
+de dominadores recebia 0 na linha x e coluna y, indicando que x nao domina y.

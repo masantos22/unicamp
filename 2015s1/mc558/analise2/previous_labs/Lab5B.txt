@@ -1,0 +1,19 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratório 5 - Parte B - Marcha dos Pinguins
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Para a resolução do problema, cada um dos blocos de 
+gelo foi transformado em um vertice em que cada um 
+deles conecta-se a um novo vertice com um fluxo
+máximo igual ao seu número de saltos permitidos 
+de cada bloco. O(V)
+Em seguida, para cada bloco, verifica quais deles podem
+ser conectados e para cada possivel conexão (i,j), conecta-se
+o bloco espelho de i ao block j e o block espelho de j ao i. O(V*V) 
+Cria-se também um nó fonte, conectado a todos os blocos que 
+possuem pinguins. O(V)
+Com a criação do grafo, para cada bloco:
+1 - cria-se uma cópia do grafo original ( O (V*V) )
+2 - executa o algoritmo de Edmonds-Karp ( O (V*V*E*E) )
+Tempo total de execução: O(V*V*E*E)

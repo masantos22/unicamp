@@ -1,0 +1,16 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratório 1 - Parte B: Reconectando
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Para solucionar o problema cria-se um vetor para armazenar
+todas as arrestas do grafo inicial minimo com n - 1 arrestas
+e faz-se a ordenacao desse grafo ( O( (n)log(n) ).
+O tempo para descobrir o custo é feito em tempo de leitura O(n).
+Em seguida armazena-se as novas arrestas em um novo vetor e faz
+a ordenação dele ( O(klogk) ).
+Em um terceiro vetor, faz-se a ordenação de todas as arrestas ( O (k + n) ).
+Por fim, aplica-se o algoritmo de Kruskal O(2n + k) para computar o
+custo minimo.
+Podemos perceber que a solução tem complexidade O(nlogn) ou O(klogk)
+dependeno se n > k.

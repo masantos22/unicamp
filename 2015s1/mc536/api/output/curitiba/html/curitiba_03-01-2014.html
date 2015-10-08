@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Condições meteorológicas em março em Curitiba 2014 - Previsão do tempo do AccuWeather para Paraná Brasil (PT)</title>    
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"a690b21e9f","applicationID":"599479","transactionName":"NV0GYUFWCEUDBkNQDAwXIFpHeQNCIQpZTRENVAhQQRggWRAAVFgQFhcpWl1DDg==","queueTime":0,"applicationTime":74,"ttGuid":"D5FD5630FB1965E6","agent":"js-agent.newrelic.com/nr-632.min.js"}</script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQUFVl5UGwYJXVVVDg=="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:20,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(3),window.onerror=e;try{throw new Error}catch(u){"stack"in u&&(t(4),t(5),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:8,3:3,4:7,5:6,6:21,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:21,2:22,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:22,2:21,ee:"QJf3ax"}],7:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:22,2:21,ee:"QJf3ax"}],8:[function(t,e){function n(){u.inPlace(this,p,"fn-")}function r(t,e){u.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),u=c(a),f=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,u.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:5,2:22,ee:"QJf3ax"}],9:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=n(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=n(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var f=0;c>f;f++)e.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:10,3:8,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],10:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],11:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:20,2:21,handle:"D5DuLP"}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===f.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=u.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=(t(2),window),u=c.document,f=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},p=e.exports={offset:i(),origin:f,features:{}};u.addEventListener?(u.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(u.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:20,2:11,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],20:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],21:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],22:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:21,ee:"QJf3ax"}]},{},["G9z0Bl",4,9]);</script>
+          
+    <link rel="canonical" href="http://www.accuweather.com/pt/br/curitiba/44944/march-weather/44944" />
+<link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.accuweather.com/pt/br/curitiba/44944/march-weather/44944" />
+<link rel="alternate" media="handheld" href="http://m.accuweather.com/pt/br/curitiba/44944/march-weather/44944" />
+
+    <meta name="viewport" content="width=988"/>
+    <link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/site.min-20150428a.css" type="text/css" media="all" /> 
+
+    <style type="text/css">
+        @media print{#header-davek,#header-links,#header-davek-2,#ad-prestitial-panel,#footer-nav,#offers,div.logo-ad,div.panel-ad-mr,div.ad-lr,#ad-links,#wrap-s .bt,.margusity,.column-2-r,.addthis_toolbox,body#news-news .column-2,body#news-news #news,body#news-news .panel-head-tabs-rt,#extras{display:none}body,#wrap,#wrap-content,.column-1,#panel-main,.strong .panel-body,.strong .panel-body-lt,.strong .panel-body-rt,.strong .panel-foot,.strong .panel-foot-lt,.strong .panel-foot-rt,.strong .panel-head,.strong .panel-head-lt,.strong .panel-head-rt{background:0}.clearfix{position:static;display:block}body#news-news .column-1{width:980px;float:none;}}
+    </style>
+
+    <link rel="shortcut icon" href="http://vortex.accuweather.com/adc2010/images/favicons/awx-2013-master.ico" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <style type="text/css">
+.flag-BR { background-image: url(http://vortex.accuweather.com/adc2010/images/flags/BR.png) !important;}
+.flag-US { background-image: url(http://vortex.accuweather.com/adc2010/images/flags/US.png) !important;}
+.flag-CN { background-image: url(http://vortex.accuweather.com/adc2010/images/flags/CN.png) !important;}
+        .i-38-header {background-image: url(http://vortex.accuweather.com/adc2010/images/header-bg-night/38-header.jpg);}
+         </style> 
+    
+<link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/pages/forecast-month.min-20101013.css" type="text/css" media="all" /> 
+<style type="text/css">
+
+</style>
+
+
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/ie6.css" type="text/css" media="all" />
+    <script type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/ie6.js"></script>
+    <![endif]--> 
+    <!--[if lt IE 7]>
+    <script defer type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/ie6_png_fix.js"></script>
+    <![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/ie7.min-20130423.css" type="text/css" media="all" /><![endif]--> 
+    <!--[if IE 8]><link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/ie8.min-20130423.css" type="text/css" media="all" /><![endif]--> 
+    <!--[if gte IE 9]><link rel="stylesheet" href="http://vortex.accuweather.com/adc2010/stylesheets/ie9.min-20121129.css" type="text/css" media="all" /><![endif]--> 
+
+    <script type="text/javascript">
+    //define our user bucket settings from config
+    var userLevelSettings = {
+        engagedUserSessionPageViews: 9,
+        ambassadorSessions: 5,
+        engagedAmbassadorTotalPageViews: 18
+        };
+
+    var bingMapsKey = 'Aq63PdcG0ddlLSi7wf0mYGOEp6l2fVZqDjlpBEIMjicZ38F6t9jlRdb1B0Y2tKgE';
+
+    var gaKey = 'UA-20804842-1';
+    </script>
+
+            <script type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/adclotaud.min-20150320a.js"></script>
+    <script type="text/javascript">
+    var apgUserInfoObj = {
+        country: 'BR',
+        city: 'Curitiba',
+        state: 'PR',
+        metro: '',
+        zip: '',
+        fcode: 'SBBI',
+        partner: 'accuweather',
+        sessionPartner: 'accuweather',
+        referer: '',
+        lang: 'pt',
+        langid: '5',
+        lat: '-25.43',
+        lon: '-49.27',
+        dma: '',
+        ip: '201.82.102.200',
+        ipLocation: 'br/curitiba/44944/',
+        sessionViews: 1,
+    //visitFlow: '',
+    geo_dma: '',
+        geo_city: 'Campinas',
+    geo_state: 'SP',
+    geo_zip: '',
+    geo_country: 'BR',
+    gmtOffset: '-3',
+        locationKey: '44944'
+    };
+
+
+        var apgWxInfoObj = { nwsalrt: '', 
+            alerts: { source: '', category: '', typeid: '' },
+            isday: '0', 
+            lfs: { day: '', category: '', severity: '' }, 
+            hdln: '', 
+            ut: '1', 
+            hr: '21',
+            cu: { wx: '38', hi: '12', wd: '', hd: '', uv: '' }, 
+            fc: [{wx:'',hi:'',lo:'',dp:{lp:'',r:'',s:'',i:''},np:{lp:'',r:'',s:'',i:''}},
+                {wx:'',hi:'',lo:'',dp:{lp:'',r:'',s:'',i:''},np:{lp:'',r:'',s:'',i:''}},
+                {wx:'',hi:'',lo:'',dp:{lp:'',r:'',s:'',i:''},np:{lp:'',r:'',s:'',i:''}}], 
+            ix: {arthritis:'1',asthma:'1',bbq:'3',cold:'1',flu:'',lawnmowing:'5',migraine:'1',outdoor:'4',schoolclosing:'',sinus:'2',soil:'',field:'',beach:'4',biking:'5',concert:'2',construction:'4',composting:'3',dust:'1',fishing:'2',fueleconomy:'4',golf:'4',heart:'5',hiking:'5',hvac:'1',mosq:'2',sailing:'5',running:'5',schoolbus:'5',skiing:'1',star:'1',frizz:'3',pollen:'1',uvindex:'2',hunting:'2', driving:'5', travel:'5', airq:'0', pgrass:'1', pmold:'1', pweed:'1', ptree:'1' } };
+var aadCustomKeyValuePairs = {};
+</script>
+    
+    <script type="text/javascript">
+    var AW_EXP_ID = null;
+    var AW_EXP_VAR = null;
+        var apgConfigObj = {};
+        apgConfigObj.showLifestyle = false;
+        apgConfigObj.prompts = {};
+    apgConfigObj.useBrightcoveVideoWall = true;
+    apgConfigObj.openBrightCoveVideoWallInNewTab = true;
+
+        var acm_RecentLocationsCarousel= new Array();
+
+acm_RecentLocationsCarousel.push({name:"Curitiba, Brasil", daypart:'night', href:'/pt/br/curitiba/44944/weather-forecast/44944', icon:'http://vortex.accuweather.com/adc2010/images/icons-numbered/38-m.png', bg:'s', temp:'12',  realfeel:'10',  text:'Muito nublado'});
+acm_RecentLocationsCarousel.push({name:"Nova Iorque, NY", daypart:'night', href:'/pt/us/new-york-ny/10007/weather-forecast/349727', icon:'http://vortex.accuweather.com/adc2010/images/icons-numbered/07-m.png', bg:'s', temp:'14',  realfeel:'14',  text:'Nublado'});
+acm_RecentLocationsCarousel.push({name:"Miami, FL", daypart:'night', href:'/pt/us/miami-fl/33128/weather-forecast/347936', icon:'http://vortex.accuweather.com/adc2010/images/icons-numbered/36-m.png', bg:'s', temp:'27',  realfeel:'28',  text:'Com períodos nublados'});
+acm_RecentLocationsCarousel.push({name:"Los Angeles, CA", daypart:'day', href:'/pt/us/los-angeles-ca/90012/weather-forecast/347625', icon:'http://vortex.accuweather.com/adc2010/images/icons-numbered/01-m.png', bg:'su', temp:'19',  realfeel:'19',  text:'Céu Limpo'});
+
+    </script>
+
+
+    <script type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/lib.min-20141105.js"></script> 
+    
+<script type="text/javascript">
+    var apgPageInfoObj = { ad_site: 'world', section: 'forecast', ad_section: 'forecast', page: 'forecast-month', ad_page: 'month', page_code: '', crumb_trail: ["Forecast", "Month", "List", "BR", "Paraná", "Curitiba"], pageType: 'forecast', pageExt: '', adPos: { atf728: true, atfPencil: true, atf300: false, atf160: true, btf728: true, btf300: false, popunder: true, prestitial: true, links: false, ptoSkin: true, tiles: [
+{
+  divid: "header-davek-ps",
+  atf: true,
+  companion: false,
+  name: "Tile1",
+  enabled: true,
+  sizes: {
+    ATF728:true,
+    ATFPENCIL:true
+  }
+},
+{
+  divid: "top-panel-body-rt-body-ps",
+  atf: true,
+  companion: false,
+  name: "Tile2",
+  enabled: false,
+  sizes: {
+    ATF300:true,
+    ATF300_NONPROD:true,
+    ATF160:false
+  }
+},
+{
+  divid: "bottom-panel-body-ps",
+  atf: false,
+  companion: false,
+  name: "Tile3",
+  enabled: false,
+  sizes: {
+    BTF300:true,
+    BTF300_NONPROD:true
+  }
+},
+{
+  divid: "footer-stevem-ps",
+  atf: false,
+  companion: false,
+  name: "Tile4",
+  enabled: true,
+  sizes: {
+    BTF728:true
+  }
+},
+{
+  divid: "aadTop300",
+  atf: true,
+  companion: false,
+  name: "Tile2",
+  enabled: true,
+  sizes: {
+    ATF300:false,
+    ATF300_NONPROD:false,
+    ATF160:true
+  }
+},
+{
+  divid: "aadTRR160",
+  atf: false,
+  companion: false,
+  name: "Tile6",
+  enabled: true,
+  sizes: {
+    ATF160:true
+  }
+}]
+ } };
+
+    
+</script>
+
+
+
+<script type="text/javascript">
+    var climoMonth = "3";
+    var climoYear = "2014";
+
+    function setNewFMYear(theyear) {
+        window.location.href = "http://www.accuweather.com/pt/br/city/44944/month/44944?monyr=" + climoMonth + "/01/" + theyear;
+    }
+    function setNewFMMonth(themonth) {
+        window.location.href = "http://www.accuweather.com/pt/br/city/44944/month/44944?monyr=" + themonth + "/01/" + climoYear;
+    }
+</script> 
+
+
+    <script type="text/javascript">
+        if (apgConfigObj.minutecast) {
+            apgConfigObj.minutecast.contentAmount = '1';
+        }
+    </script>
+
+<script>
+    var acm = {};
+    acm.isOldIE = false;
+</script>    
+<!--[if lte IE 8]>
+    <script>acm.isOldIE = true;</script>
+<![endif]-->
+    <script type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/site.min-20150429-1001.js"></script>
+            <script src="https://tags.crwdcntrl.net/c/5355/cc.js?ns=_cc5355" id="LOTCC_5355"></script>
+            <script>
+                _cc5355.bcp();
+            </script>
+                    <script type="text/javascript" src="http://vortex.accuweather.com/adc2010/javascripts/ads-gpt.min-20150415-1002.js"></script>
+                    <script src="http://www.googletagservices.com/tag/js/gpt.js"></script>
+
+
+        <script type="text/javascript">
+        var settingsCke = "acm";
+        sj_SelectCountry = "Selecione um pa&#237;s";
+
+            function acmCitySubmit(key) {
+
+                var s_value = document.getElementById('s').value;
+                if (s_value == "Forne&#231;a o c&#243;digo postal e cidade...") {
+                    return false;
+                }
+
+                if (s_value === "") {
+                    return false;
+                }
+                var isKeyPress = (key) ? 'EnterKey' : 'ButtonClick';
+
+                if (s_value == "Curitiba, Brasil") {
+                    gaManager.trackEvent('LocationBox', 'DefaultLocation', s_value.toLowerCase());
+                    setTimeout(function () {
+                        window.location.href = 'http://www.accuweather.com/pt/br/curitiba/44944/weather-forecast/44944';
+                    }, 50);
+                } else {
+                    gaManager.trackEvent('LocationBox', 'SearchLocation', s_value.toLowerCase());
+                    //setTimeout(function () {
+                    //    document.forms["findcity"].submit();
+                    //}, 50);
+                    // Execute it right away to prevent double-submit.
+                    document.forms["findcity"].submit();
+                }
+            }
+
+
+        </script>
+
+    
+    <script>
+        var _comscore = _comscore || [];
+        _comscore.push({ c1: "2", c2: "6005068" });
+        (function () {
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+            s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+            el.parentNode.insertBefore(s, el);
+        })();
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })()
+    </script>
+</head>
+<body id="forecast-month" class="forecast ">
+
+
+
+<span id="dynamic-menu-container"></span> 
+<div id="menu-cities" class="menu menu-list add-interest-menu"> 
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+        <ul class="menu-items">
+            <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/weather-forecast/44944">Curitiba, Brasil</a></li>
+            <li><a href="http://www.accuweather.com/pt/us/new-york-ny/10007/weather-forecast/349727">Nova Iorque, NY</a></li>
+            <li><a href="http://www.accuweather.com/pt/us/miami-fl/33128/weather-forecast/347936">Miami, FL</a></li>
+            <li><a href="http://www.accuweather.com/pt/us/los-angeles-ca/90012/weather-forecast/347625">Los Angeles, CA</a></li>
+          <li><a href="http://www.accuweather.com/pt/browse-locations">Procurar por seu local</a></li> 
+        </ul>
+        <span class="arrow"></span><span class="arrow-border"></span>
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt --> 
+</div> 
+
+<!-- NEW! menu -->
+<div id="current-city-menu" class="menu menu-list add-interest-menu">
+  <div class="menu-head-lt"><div class="menu-head-rt"><div class="menu-head"></div></div></div><!-- /.menu-head-lt -->
+  <div class="menu-body-lt">
+  <div class="menu-body-rt">
+  <div class="menu-body">
+	<ul>
+        <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/hourly-weather-forecast/44944">Previs&#227;o do tempo de hora em hora</a></li> 
+        <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/daily-weather-forecast/44944">Estendido</a></li> 
+        <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/weekend-weather/44944">Fim de semana</a></li> 
+        <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/may-weather/44944">Panorama do m&#234;s</a></li> 
+        <li><a href="http://www.accuweather.com/pt/br/curitiba/44944/current-weather/44944">Situa&#231;&#227;o meteorol&#243;gica atual</a></li> 
+	</ul>
+  <span class="arrow"></span>
+  <span class="arrow-border"></span>	
+  </div>
+  </div>
+  </div>
+  <!-- /.menu-body-lt -->
+  <div class="menu-foot-lt"><div class="menu-foot-rt"><div class="menu-foot"></div></div></div><!-- /.menu-foot-lt -->
+
+</div>
+<!-- #/current-city-menu -->
+
+<div id="current-country-menu" class="menu menu-list add-interest-menu">
+  <div class="menu-head-lt">
+    <div class="menu-head-rt">
+      <div class="menu-head"></div>
+    </div>
+  </div>
+  <!-- /.menu-head-lt -->
+  <div class="menu-body-lt">
+    <div class="menu-body-rt">
+      <div class="menu-body">
+        <ul>
+          <li class="first"><a href="http://www.accuweather.com/pt/br/brazil-weather">Inicial</a></li>
+        </ul>
+        <ul>
+                <li class="first"><a href="http://www.accuweather.com/pt/br/national/satellite">Mapas</a></li>
+                <li><a href="http://www.accuweather.com/pt/br/national/satellite">Sat&#233;lite</a></li>
+                <li><a href="http://www.accuweather.com/pt/br/national/weather-forecast-maps">Mapas de previs&#227;o do tempo</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <span class="arrow"></span> <span class="arrow-border"></span> </div>
+    </div>
+  </div>
+  <!-- /.menu-body-lt -->
+  <div class="menu-foot-lt">
+    <div class="menu-foot-rt">
+      <div class="menu-foot"></div>
+    </div>
+  </div>
+  <!-- /.menu-foot-lt --> 
+</div>
+<!-- #/current-country-menu -->
+
+<div id="menu-premium" class="menu menu-with-title">
+  <h3 class="menu-title"><span>Login</span></h3> 
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+        <ul class="menu-items"> 
+          <li><a href="https://wwwl.AccuWeather.com/premium_login.php" target="_blank">AccuWeather.com Premium</a></li> 
+          
+          <li><a href="https://wwwl.AccuWeather.com/pro_login.php" target="_blank">AccuWeather.com Professional</a></li> 
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt --> 
+</div> 
+
+
+<div id="menu-settings" class="menu menu-with-title"> 
+  
+  <h3 class="menu-title"><span></span></h3> 
+  
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+        
+      <h4>Minhas configura&#231;&#245;es</h4> 
+      
+      <div class="control-wrap"> 
+      
+      <form action="" method="post" autocomplete="false"> 
+           
+      <label for="settings-language"></label> 
+      <select id="settings-language" name="language" class="match-toggle" onchange="acm_updateLanguage(this.options[this.selectedIndex].value, (this.selectedIndex+1));">
+       <option value="en-us">English (US)</option>
+<option value="es">Espa&#241;ol</option>
+<option value="fr">Fran&#231;ais</option>
+<option value="da">Dansk</option>
+<option value="pt">Portugu&#234;s</option>
+<option value="nl">Nederlands</option>
+<option value="no">Norsk</option>
+<option value="it">Italiano</option>
+<option value="de">Deutsch</option>
+<option value="sv">Svenska</option>
+<option value="fi">Suomi</option>
+<option value="zh-hk">中文 (HK)</option>
+<option value="zh-cn">中文 (SIM)</option>
+<option value="zh-tw">中文 (Taiwan)</option>
+<option value="es-ar">Espa&#241;ol (Argentina)</option>
+<option value="es-mx">Espa&#241;ol (Latin America)</option>
+<option value="sk">Slovenčinu</option>
+<option value="ro">Romana</option>
+<option value="cs">Čeština</option>
+<option value="hu">Magyar</option>
+<option value="pl">Polski</option>
+<option value="ca">Catal&#224;</option>
+<option value="pt-br">Portugu&#234;s (Brazil)</option>
+<option value="hi">हिन्दी</option>
+<option value="ru">русский</option>
+<option value="ar">عربي</option>
+<option value="el">Ελληνικά</option>
+<option value="en-gb">English (UK)</option>
+<option value="ja">日本語</option>
+<option value="ko">한국어</option>
+<option value="tr">T&#220;RK&#199;E</option>
+<option value="fr-ca">Fran&#231;ais (Canada)</option>
+<option value="he">עברית</option>
+<option value="sl">Slovenski</option>
+<option value="uk">Українське</option>
+<option value="id">Bahasa Indonesia</option>
+<option value="bg">български</option>
+<option value="et">Eesti keeles</option>
+<option value="hr">Hrvatski</option>
+<option value="kk">Қазақша</option>
+<option value="lt">Lietuvių</option>
+<option value="lv">Latviski</option>
+<option value="mk">Македонски</option>
+<option value="ms">Bahasa Melayu</option>
+<option value="tl">Tagalog</option>
+<option value="sr">Srpski</option>
+<option value="th">ไทย</option>
+<option value="vi">Tiếng Việt</option>
+<option value="fa">فارسی</option>
+<option value="bn">বাংলা</option>
+<option value="bs">bosanski</option>
+<option value="is">íslenska</option>
+<option value="sw">Kiswahili</option>
+<option value="ur">اُردُو</option>
+<option value="sr-me">Crnogorski</option>
+<option value="uz">Oʻzbekcha</option>
+<option value="az">Azərbaycanca</option>
+
+      </select>
+
+      </div> 
+      <!-- /.control-wrap --> 
+ 
+      <div id="radio-toggle-temp-unit" class="radio-toggle"> 
+        <label for="settings-temp-unit-farenheit" class="first"> 
+          <span>&deg;F</span> 
+          <input id="settings-temp-unit-farenheit" name="temp_unit" type="radio"  value="farenheit" onclick="acm_updateUnits('0');"/> 
+        </label> 
+ 
+        <label for="settings-temp-unit-celsius" class="last"> 
+          <span>&deg;C</span> 
+          <input id="settings-temp-unit-celsius" name="temp_unit" type="radio" checked="checked" value="celsius" onclick="acm_updateUnits('1');"/> 
+        </label> 
+      </div> 
+      <!-- /.radio-toggle --> 
+    
+             </form>
+    
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt -->      
+  
+</div> 
+<!-- /#settings-menu -->
+
+<div id="menu-country" class="menu menu-with-title"> 
+ 
+  <h3 class="menu-title"><span><span class="flag-BR">Brasil</span></span></h3> 
+ 
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+ 
+      <h4>Meus pa&#237;ses recentes</h4> 
+ 
+      <ul class="menu-items"> 
+            <li><a href="http://www.accuweather.com/pt/br/brazil-weather" class="flag-BR">Brasil</a></li>
+            <li><a href="http://www.accuweather.com/pt/us/united-states-weather" class="flag-US">Estados Unidos</a></li>
+            <li><a href="http://www.accuweather.com/pt/cn/china-weather" class="flag-CN">China</a></li>
+      </ul> 
+ 
+      <a href="#country-selector" id="bt-more-countries">Mais pa&#237;ses</a> 
+    
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt -->     
+    
+</div> 
+<!-- /#menu-country --> 
+
+
+<div id="wrap" class="autumn h-s">
+  <div id="wrap-header-nav" class="night">
+    <div id="header-nav" class="i-38-header">
+      
+    
+<div id="header"> 
+
+    <div id="header-davek">
+        <div id="header-davek-ps"></div>
+        <div id="header-oop" style="position:absolute; width:1px; height:1px; left:0px; top:0px;"></div>
+                <script type="text/javascript">
+                    adManagerCopy.displayAd("header-davek-ps");
+                </script>
+    </div>        
+
+  <!-- /#header-ad --> 
+  <style type="text/css">
+    #header-nav{overflow:visible;position:static;height:auto;}
+    #header-davek{margin-top:0px;padding-top:4px;}
+  </style>
+ 
+<div id="wrap-country-settings"> 
+    <div id="country-settings"> 
+        <a href="#menu-country" id="bt-menu-country" class="menu-arrow tmenu { el:'#menu-country', affix: { from: 'nw', to: 'nw', offset: [ -6, -8 ] } }"><strong><span class="ir flag-BR">Brasil</span></strong></a>
+        <ul id="country-breadcrumbs"> 
+       
+                    <li class="first"><a href="http://www.accuweather.com/pt/world-weather">Mundo</a></li> 
+                    <li><a href="http://www.accuweather.com/pt/south-america-weather">Am&#233;rica do Sul</a></li> 
+                    <li><a href="http://www.accuweather.com/pt/br/brazil-weather">Brasil</a></li> 
+                    <li><a href="http://www.accuweather.com/pt/br/pr/parana-weather">Paran&#225;</a></li>  
+                        <li class="last"><a href="http://www.accuweather.com/pt/br/curitiba/44944/weather-forecast/44944">Curitiba</a></li>
+    </ul> 
+    <!-- /#country-breadcrumbs --> 
+  </div> 
+  <!-- /#nav-country --> 
+</div> 
+<!-- /#wrap-nav-country -->  
+
+<div id="country-selector" class="strong panel"> 
+ 
+  <div class="panel-head-lt"><div class="panel-head-rt"><div class="panel-head"></div></div></div> 
+  <div class="panel-body-lt"> 
+  <div class="panel-body-rt"> 
+  <div class="panel-body"> 
+    <div class="title"> 
+    <button class="bt bt-panel-close">Close</button> 
+    <div id="country-selector-recent"> 
+      <h3>Meus pa&#237;ses recentes</h3>  
+      <ul> 
+            <li class="first"><a href="http://www.accuweather.com/pt/br/brazil-weather" class="flag-BR">Brasil</a></li>
+            <li class=""><a href="http://www.accuweather.com/pt/us/united-states-weather" class="flag-US">Estados Unidos</a></li>
+            <li class=""><a href="http://www.accuweather.com/pt/cn/china-weather" class="flag-CN">China</a></li>
+      </ul> 
+    </div> 
+    <!-- /#country-selector-recent --> 
+    </div> 
+    <!-- /.title --> 
+ 
+    <div id="country-selector-region" class="panel-content"> 
+      
+      <div class="title"> 
+        <h3>Selecione uma regi&#227;o</h3>
+      </div> 
+      
+      <div class="content"> 
+        
+        <ul id="country-selector-region-list" class="menu-items"> 
+          <li><a class="link-region" id="link-region-afr" href="#region-afr">&#193;frica</a></li> 
+          <li><a class="link-region" id="link-region-ant" href="#region-ant">Ant&#225;rtida</a></li> 
+          <li><a class="link-region" id="link-region-arc" href="#region-arc">&#193;rtico</a></li> 
+          <li><a class="link-region" id="link-region-asi" href="#region-asi">&#193;sia</a></li> 
+          <li><a class="link-region" id="link-region-cac" href="#region-cac">Am&#233;rica Central</a></li> 
+          <li><a class="link-region" id="link-region-eur" href="#region-eur">Europa</a></li> 
+          <li><a class="link-region" id="link-region-mea" href="#region-mea">Oriente M&#233;dio</a></li> 
+          <li><a class="link-region" id="link-region-nam" href="#region-nam">Am&#233;rica do Norte</a></li> 
+          <li><a class="link-region" id="link-region-ocn" href="#region-ocn">Oceania</a></li> 
+          <li><a class="link-region" id="link-region-sam" href="#region-sam">Am&#233;rica do Sul</a></li> 
+        </ul> 
+        <!-- /#country-selector-region-list --> 
+        
+        <div id="country-selector-region-map">         
+        </div> 
+        <!-- /#country-selector-region-map --> 
+      </div> 
+      <!-- /.content --> 
+    </div> 
+    <!-- /#country-selector-region --> 
+ 
+ 
+    <div id="country-selector-country" class="panel-content"> 
+      <div id="region-afr" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /africa--> 
+      <div id="region-eur" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /europe--> 
+      <div id="region-nam" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /north america--> 
+      <div id="region-sam" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /south america--> 
+      <div id="region-cac" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /central america--> 
+      <div id="region-ocn" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /oceania--> 
+      <div id="region-mea" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /middle east--> 
+      <div id="region-ant" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /antarctica--> 
+      <div id="region-arc" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /arctic--> 
+      <div id="region-asi" class="region"> 
+        <div class="title"> <a href="#country-selector-region" class="world"><span>Mundo</span></a> 
+          <h3></h3> 
+        </div> 
+        <div class="items"> </div> 
+      </div> 
+      <!-- /asia--> 
+    </div> 
+    <!-- /#country-selector-country --> 
+ 
+
+    <div id="country-selector-notes"> 
+      <p class="first">
+        Nota: para encontrar um pa&#237;s, selecione primeiro uma regi&#227;o. 
+      </p> 
+ 
+      <p></p> 
+      
+    </div> 
+    <!-- /#country-selector-notes --> 
+ 
+    
+  </div> 
+  </div> 
+  </div> 
+  <!-- /.panel-body-lt --> 
+ 
+  <div class="panel-foot-lt"><div class="panel-foot-rt"><div class="panel-foot"></div></div></div> 
+ 
+</div> 
+<!-- / #country-selector --> 
+
+
+  <div id="header-logo-search" class="clearfix"> 
+        <div id="header-logo" class="ir"><span>Curitiba March Weather</span></div> 
+    <label for="s"></label> 
+    
+    <div id="wrap-s-rt"> 
+    <div id="wrap-s-lt"> 
+    <div id="wrap-s" class="tmenu { affix: {offset: [ 0, 7 ], to: 'sw', from: 'nw'},el: '#menu-cities' }">
+        <form id="findcity" action="http://www.accuweather.com/pt/search-locations" method="post">
+          <input onkeypress="acmCheckEnter(event);" id="s" name="s" type="text" autocomplete="off" 
+            class="text hint { help: 'Curitiba, Brasil',className:'hintedLoc' }" /> 
+          <input type="hidden" name="rn" value="3day" />
+        <button onclick="acmCitySubmit()" type="button" class="bt bt-go">
+                <div></div>
+        </button>
+        </form> 
+        <script type="text/javascript">
+            (function ($) {
+                $('input.hint').hint();
+            })(jQuery);      
+        </script>
+    </div> 
+    </div> 
+    </div> 
+    <!-- /#wrap-s-rt --> 
+    
+      <div id="control-panel">
+          <div id="social-connect">
+              <ul class="social-list">
+                  <li class="label">Siga-nos em</li>
+                  <li class="social-icon"><a id="connect_googleplus" href="https://plus.google.com/+accuweather/posts" class="gplus"></a></li>
+                  <li class="social-icon"><a id="connect_youtube" href="https://www.youtube.com/user/accuweather" class="youtube"></a></li>
+                  <li class="social-icon"><a id="connect_twitter" href="https://twitter.com/breakingweather" class="twitter"></a></li>
+                  <li class="social-icon"><a id="connect_facebook" href="https://www.facebook.com/AccuWeather" class="facebook"></a></li>
+              </ul>
+          </div>
+          <a id="bt-menu-login" class="tmenu { el:'#menu-premium', affix: { to: 'ne', from: 'ne', offset: [ 0,-6 ] } }"><span class="menu-arrow"><span>Login</span></span></a>
+          <a id="bt-menu-settings" class="tmenu { el:'#menu-settings', affix: { from: 'ne', to: 'ne', offset: [ 0,-6 ] } }"><span class="menu-arrow"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, &deg;C</span></a>
+      </div>
+      <!--#control-panel-->       
+  </div> 
+  <!-- /#header-logo-search --> 
+</div> 
+<!-- /#header --> 
+
+    </div>
+    <!-- /#header-nav -->
+  </div>
+  <!-- /#wrap-header-nav -->
+
+
+  <div id="wrap-content">
+    <div id="content">
+
+<!-- NEW! adding add-interest tab -->
+<div id="nav-main-add-interests" class="clearfix">
+
+	<div id="nav-main-background"></div>
+
+	<ul id="nav-current-location" class="sub-nav">
+		<li id="current-country-tab" class=" tmenu { affix: {offset: [ 0, 5 ], to: 'sw', from: 'nw' }, el: '#current-country-menu' }">
+			<a href="http://www.accuweather.com/pt/br/brazil-weather" class="tab">
+				<span class="current-country">Brasil</span>
+				<span class="title">Meteorologia</span>
+			</a>
+			<span class="bottom-line"></span>
+		</li>
+		<li id="current-city-tab" class="selected tmenu { affix: {offset: [ 0, 5 ], to: 'sw', from: 'nw'}, el: '#current-city-menu' }">
+			<a href="http://www.accuweather.com/pt/br/curitiba/44944/weather-forecast/44944" class="tab">
+				<span class="current-city"><h1>Curitiba, BR</h1></span>
+				<span class="title"><h2>Meteorologia</h2></span>
+				<span class="divider"></span>
+                <span class="more-info-arrow"></span>
+				<div class="more-info-content">
+				</div><!-- end more-info-content -->
+			</a>
+		</li>
+		<li id="locations-dropdown-tab" class="location-menu { el: '#locations-dropdown-menu' }">
+			<a href="#" class="tab">
+				<span class="arrow"></span>
+				<span class="divider"></span>
+			</a>
+			<span class="cover-line"></span>
+		</li>
+	</ul><!-- end nav-current-location -->
+
+
+		<!-- New! locations dropdown menu -->
+		<div id="locations-dropdown-menu" class="menu">
+			<div class="outer-border">
+				<div id="locations-carousel" class="locations-carousel">
+					<button class="carousel-button carousel-left disabled">
+						<span class="inner-button">
+							<span class="arrow"></span>
+						</span><!-- end inner-button-->
+					</button>
+					<button class="carousel-button carousel-right">
+						<span class="inner-button">
+							<span class="arrow"></span>
+						</span><!-- end inner-button-->
+					</button>
+					<div class="outer-carousel">
+						<div class="inner-carousel clearfix">
+
+							<div class="my-recent-locations clearfix">
+								<h3>Meus locais recentes</h3>
+								<ul>
+                                
+								</ul>
+							</div><!-- end my recent locations -->
+
+						</div><!-- end inner-carousel-->
+					</div><!-- end outer-carousel -->
+				</div><!-- end carousel -->
+			</div><!-- outer-border -->
+		</div><!-- end locations-dropdown-menu -->
+
+</div><!-- end nav-main-add-interests-->
+
+<script type="text/javascript">
+    acm.setupMenus();
+</script>
+
+        
+
+
+<div class="subnav-head-tabs-rt clearfix">
+    <div class="subnav-head-tabs-lt clearfix">
+    <ul class="subnav-tab-buttons">
+    
+
+    <li ><a href="http://www.accuweather.com/pt/br/city/44944/weather-forecast/44944"><span>Agora</span></a></li>
+    <li ><a href="http://www.accuweather.com/pt/br/city/44944/weekend-weather/44944"><span>Fim de semana</span></a></li>
+    <li ><a href="http://www.accuweather.com/pt/br/city/44944/daily-weather-forecast/44944"><span>Estendido</span></a></li>
+    <li class="current"><a href="http://www.accuweather.com/pt/br/city/44944/may-weather/44944"><span><strong>M&#234;s</strong></span></a><div class="nub"></div></li>
+        <li class="last"><a href="http://www.accuweather.com/pt/br/city/44944/satellite/44944"><span>Sat&#233;lite</span></a></li>
+      
+
+    </ul>
+    </div>
+</div>
+<!-- /.panel-head-rt -->
+
+<div class="column-1 column-1-e clearfix">
+    <div id="panel-main" class="strong panel">
+        <!-- NOTE: The left and right ordering is swapped for this one, since it's a two element stretch! -->
+        <div class="panel-head-rt">
+        <div class="panel-head-lt">
+        </div>
+        </div>
+        <!-- /.panel-head-rt -->
+        <div class="panel-body-lt">
+        <div class="panel-body-rt">
+            <div class="panel-body">
+
+            
+<div class="calendar-controls">
+    <a href="http://www.accuweather.com/pt/br/city/44944/february-weather/44944?monyr=2/1/2014&amp;view=table" rel="nofollow" class="lt previous-month">&lt; fevereiro&nbsp;2014</a>
+
+    <div class="view"> 
+    <span class="btr-label">Modo de visualiza&#231;&#227;o: </span>
+    <ul class="g">
+        <li><a href="http://www.accuweather.com/pt/br/city/44944/march-weather/44944?monyr=3/1/2014&view=table" class="btr-active btr btri btri-view-list">As List</a></li>
+        <li class="tight"><a href="http://www.accuweather.com/pt/br/city/44944/march-weather/44944?monyr=3/1/2014" class="btr btri btri-view-calendar">As Calendar</a></li>
+    </ul>
+    </div>
+    <!-- /.view -->
+    <div class="month">
+    <ul class="g">
+        <li><a href="#" class="btr btr-select { el: '#menu-month', affix: { use: 'position' } }"><span>mar&#231;o</span></a></li>
+        <li><a href="#" class="btr btr-increment { el: '#menu-year', affix: { use: 'position' } }"><span>2014</span></a></li>
+    </ul>
+  <div id="menu-month" class="menu">
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+        <ul class="menu-items">
+            <li><a href="javascript:setNewFMMonth('1');">janeiro</a></li>    
+            <li><a href="javascript:setNewFMMonth('2');">fevereiro</a></li>    
+            <li class="current"><a href="javascript:setNewFMMonth('3');">mar&#231;o</a></li>    
+            <li><a href="javascript:setNewFMMonth('4');">abril</a></li>    
+            <li><a href="javascript:setNewFMMonth('5');">maio</a></li>    
+            <li><a href="javascript:setNewFMMonth('6');">junho</a></li>    
+            <li><a href="javascript:setNewFMMonth('7');">julho</a></li>    
+            <li><a href="javascript:setNewFMMonth('8');">agosto</a></li>    
+            <li><a href="javascript:setNewFMMonth('9');">setembro</a></li>    
+            <li><a href="javascript:setNewFMMonth('10');">outubro</a></li>    
+            <li><a href="javascript:setNewFMMonth('11');">novembro</a></li>    
+            <li><a href="javascript:setNewFMMonth('12');">dezembro</a></li>    
+        </ul>
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt --> 
+</div> 
+<!-- /.menu --> 
+<div id="menu-year" class="menu"> 
+  <div class="menu-head-lt"> 
+    <div class="menu-head-rt"> 
+      <div class="menu-head"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-head-lt --> 
+  <div class="menu-body-lt"> 
+    <div class="menu-body-rt"> 
+      <div class="menu-body"> 
+        <ul class="menu-items">
+            <li class="current"><a href="javascript:setNewFMYear('2014');">2014</a></li>    
+            <li><a href="javascript:setNewFMYear('2015');">2015</a></li>    
+            <li><a href="javascript:setNewFMYear('2016');">2016</a></li>    
+        </ul> 
+      </div> 
+    </div> 
+  </div> 
+  <!-- /.menu-body-lt --> 
+  <div class="menu-foot-lt"> 
+    <div class="menu-foot-rt"> 
+      <div class="menu-foot"></div> 
+    </div> 
+  </div> 
+  <!-- /.menu-foot-lt --> 
+</div> 
+<!-- /.menu --> 
+    </div>
+    <!-- /.month -->
+
+
+    <a href="http://www.accuweather.com/pt/br/city/44944/april-weather/44944?monyr=4/1/2014&amp;view=table" rel="nofollow" class="rt next-month">abril&nbsp;2014 &gt;</a>
+</div>
+
+
+              <table cellspacing="0" class="stats">
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>Alto</th>
+                    <th>Baixo</th>
+                    <th>precip</th>
+                    <th>Neve</th>
+                    <th>Previs&#227;o do tempo</th>
+                    <th>M&#225;x. m&#233;dia</th>
+                    <th>M&#237;n. m&#233;dia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">s&#225;b<br />01/03/2014</th>
+                <td>29&#176;</td>
+                <td>22&#176;</td>
+                <td>3 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">dom<br />02/03/2014</th>
+                <td>28&#176;</td>
+                <td>22&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">seg<br />03/03/2014</th>
+                <td>28&#176;</td>
+                <td>23&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">ter<br />04/03/2014</th>
+                <td>29&#176;</td>
+                <td>23&#176;</td>
+                <td>42 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qua<br />05/03/2014</th>
+                <td>27&#176;</td>
+                <td>22&#176;</td>
+                <td>2 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qui<br />06/03/2014</th>
+                <td>31&#176;</td>
+                <td>22&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">sex<br />07/03/2014</th>
+                <td>29&#176;</td>
+                <td>22&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">s&#225;b<br />08/03/2014</th>
+                <td>29&#176;</td>
+                <td>21&#176;</td>
+                <td>2 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">dom<br />09/03/2014</th>
+                <td>29&#176;</td>
+                <td>21&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">seg<br />10/03/2014</th>
+                <td>31&#176;</td>
+                <td>23&#176;</td>
+                <td>3 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">ter<br />11/03/2014</th>
+                <td>26&#176;</td>
+                <td>23&#176;</td>
+                <td>15 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qua<br />12/03/2014</th>
+                <td>25&#176;</td>
+                <td>23&#176;</td>
+                <td>42 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qui<br />13/03/2014</th>
+                <td>24&#176;</td>
+                <td>22&#176;</td>
+                <td>54 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">sex<br />14/03/2014</th>
+                <td>30&#176;</td>
+                <td>22&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">s&#225;b<br />15/03/2014</th>
+                <td>34&#176;</td>
+                <td>23&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">dom<br />16/03/2014</th>
+                <td>30&#176;</td>
+                <td>25&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">seg<br />17/03/2014</th>
+                <td>35&#176;</td>
+                <td>24&#176;</td>
+                <td>18 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">ter<br />18/03/2014</th>
+                <td>31&#176;</td>
+                <td>23&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qua<br />19/03/2014</th>
+                <td>30&#176;</td>
+                <td>25&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qui<br />20/03/2014</th>
+                <td>31&#176;</td>
+                <td>24&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">sex<br />21/03/2014</th>
+                <td>27&#176;</td>
+                <td>24&#176;</td>
+                <td>4 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">s&#225;b<br />22/03/2014</th>
+                <td>27&#176;</td>
+                <td>23&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">dom<br />23/03/2014</th>
+                <td>24&#176;</td>
+                <td>18&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">seg<br />24/03/2014</th>
+                <td>26&#176;</td>
+                <td>20&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">ter<br />25/03/2014</th>
+                <td>27&#176;</td>
+                <td>20&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qua<br />26/03/2014</th>
+                <td>27&#176;</td>
+                <td>20&#176;</td>
+                <td>25 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">qui<br />27/03/2014</th>
+                <td>28&#176;</td>
+                <td>21&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">sex<br />28/03/2014</th>
+                <td>29&#176;</td>
+                <td>21&#176;</td>
+                <td>1 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">s&#225;b<br />29/03/2014</th>
+                <td>29&#176;</td>
+                <td>22&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">dom<br />30/03/2014</th>
+                <td>27&#176;</td>
+                <td>23&#176;</td>
+                <td>12 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="pre">
+                <th scope="row" style="background-color:#F6F3ED;color:#7D7C7C">seg<br />31/03/2014</th>
+                <td>29&#176;</td>
+                <td>23&#176;</td>
+                <td>0 mm</td>
+                <td>0 cm</td>
+                <td>&nbsp;</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            </table>
+<div class="calendar-controls" style="margin-top:15px;">
+    <a href="http://www.accuweather.com/pt/br/city/44944/february-weather/44944?monyr=2/1/2014&amp;view=table" rel="nofollow" class="lt previous-month">&lt; fevereiro&nbsp;2014</a>
+
+    <a href="http://www.accuweather.com/pt/br/city/44944/april-weather/44944?monyr=4/1/2014&amp;view=table" rel="nofollow" class="rt next-month">abril&nbsp;2014 &gt;</a>
+</div>
+
+
+
+            </div>
+        </div>
+        </div>
+        <!-- /.panel-body-lt -->
+        <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+        </div>
+    </div>
+    <!-- /#panel-main -->
+
+    
+    <div class="panel"> 
+      <div class="panel-head-rt"> 
+        <div class="panel-head-lt"> 
+          <div class="panel-head"></div>
+        </div> 
+      </div> 
+      <div class="panel-body-lt"> 
+        <div class="panel-body-rt"> 
+          <div class="panel-body"> 
+            <div class="panel-body-content"> 
+			 <h3>Gr&#225;fico de temperaturas mar&#231;o 2014</h3> 
+			 <div class="content"> 
+			    <p> 
+                <!-- START Code Block for Chart myLine -->
+	            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="770" height="250" id="myLine">
+		            <param name="allowScriptAccess" value="always" />
+		            <param name="movie" value="http://vortex.accuweather.com/adc2004/common/includes/fusioncharts/Charts/MSCombi2D.swf"/>		
+		            <param name="FlashVars" value="&chartWidth=770&chartHeight=250&debugMode=0&dataXML=<chart yAxisMinValue='10' yAxisMaxValue='40' numDivLines='2' animation='1' zeroPlaneThickness='1' vDivLineIsDashed='1' vDivLineDashLen='2' vDivLineDashGap='2' setAdaptiveYMin='1' showLabels='1' showValues='0' showYAxisValues='1' showLimits='1' showLegend='1' chartTopMargin='5' chartBottomMargin='1' drawAnchors='1' anchorRadius='2' chartLeftMargin='0' chartRightMargin='1' canvasPadding='20' showBorder='0' showPlotBorder='1' showAlternateHGridColor='0' divLineColor='e3ddcf' bgColor='ffffff' divLineAlpha='50' canvasbgColor='ffffff' canvasBorderColor='F1EFE9' canvasBorderThickness='1' lineThickness='3' ><categories><category label='1' /><vLine color='e3ddcf' thickness='1' linePosition='0' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='2' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='3' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='4' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='5' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='6' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='7' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='8' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='9' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='10' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='11' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='12' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='13' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='14' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='15' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='16' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='17' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='18' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='19' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='20' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='21' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='22' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='23' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='24' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='25' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='26' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='27' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='28' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='29' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='30' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='31' /><vLine color='e3ddcf' thickness='1' linePosition='1' /></categories><dataset seriesName='Máx. real' renderAs='Line' color='FF9700'><set value='28.6' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.8' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.8' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.7' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.8' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.4' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.6' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.4' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.1' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='25.7' tooltext='Máx. real: 26°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='25.2' tooltext='Máx. real: 25°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='23.8' tooltext='Máx. real: 24°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.5' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='33.6' tooltext='Máx. real: 34°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.4' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='34.5' tooltext='Máx. real: 35°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.4' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.4' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.5' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.4' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.6' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='23.6' tooltext='Máx. real: 24°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.4' tooltext='Máx. real: 26°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.2' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.8' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.8' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.2' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /></dataset><dataset seriesName='Mín. real' renderAs='Line' color='637EBE'><set value='22' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.3' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.7' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.3' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.1' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.3' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.3' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.4' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.9' tooltext='Mín. real: 25°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.9' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.1' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.7' tooltext='Mín. real: 25°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.4' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.1' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='18.3' tooltext='Mín. real: 18°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='19.5' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.1' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.1' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.7' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.4' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.9' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.9' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /></dataset></chart>" quality="high" wmode="transparent" width="770" height="250" name="myLine" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		            <param name="quality" value="high" />
+		            <param name="wmode" value="transparent" />
+		            <embed src="http://vortex.accuweather.com/adc2004/common/includes/fusioncharts/Charts/MSCombi2D.swf" FlashVars="&chartWidth=770&chartHeight=250&debugMode=0&dataXML=<chart yAxisMinValue='10' yAxisMaxValue='40' numDivLines='2' animation='1' zeroPlaneThickness='1' vDivLineIsDashed='1' vDivLineDashLen='2' vDivLineDashGap='2' setAdaptiveYMin='1' showLabels='1' showValues='0' showYAxisValues='1' showLimits='1' showLegend='1' chartTopMargin='5' chartBottomMargin='1' drawAnchors='1' anchorRadius='2' chartLeftMargin='0' chartRightMargin='1' canvasPadding='20' showBorder='0' showPlotBorder='1' showAlternateHGridColor='0' divLineColor='e3ddcf' bgColor='ffffff' divLineAlpha='50' canvasbgColor='ffffff' canvasBorderColor='F1EFE9' canvasBorderThickness='1' lineThickness='3' ><categories><category label='1' /><vLine color='e3ddcf' thickness='1' linePosition='0' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='2' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='3' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='4' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='5' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='6' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='7' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='8' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='9' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='10' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='11' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='12' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='13' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='14' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='15' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='16' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='17' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='18' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='19' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='20' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='21' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='22' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='23' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='24' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='25' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='26' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='27' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='28' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='29' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='30' /><vLine color='e3ddcf' thickness='1' linePosition='1' /><category label='31' /><vLine color='e3ddcf' thickness='1' linePosition='1' /></categories><dataset seriesName='Máx. real' renderAs='Line' color='FF9700'><set value='28.6' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.8' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.8' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.7' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.8' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.4' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.6' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.4' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.1' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='25.7' tooltext='Máx. real: 26°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='25.2' tooltext='Máx. real: 25°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='23.8' tooltext='Máx. real: 24°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.5' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='33.6' tooltext='Máx. real: 34°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.4' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='34.5' tooltext='Máx. real: 35°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='31.4' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.4' tooltext='Máx. real: 30°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='30.5' tooltext='Máx. real: 31°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.4' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.6' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='23.6' tooltext='Máx. real: 24°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.4' tooltext='Máx. real: 26°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.2' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='26.8' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28' tooltext='Máx. real: 28°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='28.8' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='27.2' tooltext='Máx. real: 27°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /><set value='29.2' tooltext='Máx. real: 29°C' color='FF9700' anchorBgColor='FF9700' anchorBorderColor='FF9700' /></dataset><dataset seriesName='Mín. real' renderAs='Line' color='637EBE'><set value='22' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.3' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.7' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.3' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.1' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.3' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.3' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.4' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.7' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.9' tooltext='Mín. real: 25°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.9' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23.1' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.7' tooltext='Mín. real: 25°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.4' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='24.1' tooltext='Mín. real: 24°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='23' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='18.3' tooltext='Mín. real: 18°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='19.5' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.1' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.1' tooltext='Mín. real: 20°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='20.7' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.4' tooltext='Mín. real: 21°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='21.9' tooltext='Mín. real: 22°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.5' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /><set value='22.9' tooltext='Mín. real: 23°C' color='637EBE' anchorBgColor='637EBE' anchorBorderColor='637EBE' /></dataset></chart>" quality="high" wmode="transparent" width="770" height="250" name="myLine" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	            </object>
+	            <!-- END Code Block for Chart myLine -->
+                </p>
+             </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- /.panel-body-lt -->
+        <div class="panel-foot-lt">
+        <div class="panel-foot-rt">
+            <div class="panel-foot"></div>
+        </div>
+        </div>
+    </div>
+    <!-- /#panel-main -->
+
+
+
+</div>
+<!-- /.column-1 -->
+
+        
+  <div class="column-2 column-2-r clearfix"> 
+    
+	<div id="aadTop300" class="ad-lr">
+		<script type="text/javascript">
+		    try {
+		        if (typeof (aadTags) != 'undefined' && aadTags.tile2) {
+		            document.write(aadTags.tile2);
+		        }
+		    } catch (e) { }
+		</script> 
+	</div> 
+      <div id="aadTRR160" class="ad-lr" style="margin-top:30px">
+              <script type="text/javascript">
+                  adManagerCopy.displayAd("aadTRR160");
+              </script>
+      </div>
+
+  </div> 
+
+  <!-- /.column-2 --> 
+
+
+
+
+            <div id="offers" class="offers-extras"></div>
+
+    </div>
+    <!-- /#content -->
+  </div>
+  <!-- /#wrap-content -->
+
+   <div id="footer">
+    <div id="footer-content-wrapper">
+        <div class="logo-ad">
+            <h5 class="logo">AccuWeather.com</h5>
+            <div id="footer-stevem">
+                <div id="footer-stevem-ps" ></div>
+                        <script type="text/javascript">
+                            adManagerCopy.displayAd("footer-stevem-ps");
+                        </script>
+            </div>
+        </div>
+
+    <div id="custom-goog-search">
+        <style type="text/css">
+            @import url(http://www.google.com/cse/api/branding.css);
+        </style>
+        <div class="cse-branding-right" style="color:#000000">
+            <div class="cse-branding-form">
+                <form action="http://www.google.com" id="cse-search-box" target="_blank">
+                    <div>
+                        <input type="hidden" name="cx" value="partner-pub-5771594739411148:7839492073" />
+                        <input type="hidden" name="ie" value="UTF-8" />
+                        <input id="goog-cse-input" type="text" name="q" size="100" />
+                        <input id="goog-cse-submit" type="submit" name="sa" value="" />
+                    </div>
+                </form>
+            </div>
+            <div class="cse-branding-logo">
+                <img src="http://vortex.accuweather.com/adc2010/images/misc/googlelogo.png" alt="Google" />
+            </div>
+            <div class="cse-branding-text">
+                Custom Search
+            </div>
+        </div>
+    </div>
+      <div id="footer-nav-main" class="clearfix">
+        <div class="first">
+          <ul class="footer-nav-cols">
+            <li class="head">Company</li>
+            <li><a href="http://www.accuweather.com/pt/about">About Us</a></li>
+            <li><a href="http://mediakit.accuweather.com" target="_blank">Advertise With Us</a></li>
+            <li><a href="http://mediakit.accuweather.com/self-service-ads" target="_blank">Self-Serve Advertising</a></li>
+            <li><a href="http://accuweathercareers.silkroad.com/" target="_blank">Careers</a></li>
+            <li><a href="http://www.accuweather.com/pt/press">Press</a></li>
+            
+            <li><a href="http://www.accuweather.com/pt/contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="footer-nav-cols">
+            <li class="head">Enterprise Solutions</li>
+            <li><a href="http://www.accuweather.com/adc2004/pub/products_services/media.asp" target="_blank">Media</a></li>
+            <li><a href="http://enterprisesolutions.accuweather.com/manufacturing" target="_blank">Manufacturing</a></li>
+            <li><a href="http://enterprisesolutions.accuweather.com/retail" target="_blank">Retail</a></li>
+            <li><a href="http://enterprisesolutions.accuweather.com/finance-banking" target="_blank">Finance &amp; Banking</a></li>
+            <li><a href="http://enterprisesolutions.accuweather.com/energy" target="_blank">Energy</a></li>
+              <li><a href="http://enterprisesolutions.accuweather.com/legal-forensics" target="_blank">Forensic Weather Experts</a></li>
+            <li><a href="http://enterprisesolutions.accuweather.com" target="_blank">All Enterprise Solutions</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="footer-nav-cols">
+            <li class="head">Subscription Services</li>
+            <li><a href="https://wwwl.accuweather.com/premium_login.php" target="_blank">AccuWeather Premium</a></li>
+            <li><a href="https://wwwl.accuweather.com/pro_login.php" target="_blank">AccuWeather Professional</a></li>
+          </ul>
+        </div>
+        <div class="last">
+          <ul class="footer-nav-cols">
+            <li class="head">Partners</li>
+            <li class="img"><a href="http://www.adci.com/html/worldmap/adc_worldmap_digital_atlas.php" target="_blank" class="adci-world-map"></a></li>
+            <!--<li><a href="" target="_blank">Mobium GPS / GeoMicro</a></li>-->
+          </ul>
+        </div>
+      </div>
+      <div id="footer-tm"> &copy; 2015 AccuWeather, Inc. All Rights Reserved.<br />
+        AccuWeather.com is a registered trademark of AccuWeather, Inc.<br />
+        <a href="http://www.accuweather.com/pt/legal">Terms of usage</a> under which this service is provided<br />
+        <a href="http://www.accuweather.com/pt/privacy">Privacy Statement</a> | <a href="http://www.accuweather.com/pt/privacy#adChoices">Ad Choices</a> </div>
+      <div id="footer-social">
+        <ul>
+          <li class="apps"><a href="http://www.accuweather.com/pt/downloads">Apps &amp; Downloads</a></li>
+          <li class="fb"><a href="http://www.facebook.com/AccuWeather" target="_blank">Like Us</a></li>
+          <li class="twt"><a href="http://twitter.com/BreakingWeather" target="_blank">Follow Us</a></li>
+          <li class="utube"><a href="http://www.youtube.com/accuweather" target="_blank">Watch Us</a></li>
+        </ul>
+      </div>
+      <!-- /#footer-info --> 
+    </div>
+    <!-- /#footer-content-wrapper --> 
+  </div>
+<!-- /#footer --> 
+
+    <script>
+        if (typeof (aadSponsoredLinksObj) != 'undefined' && aadSponsoredLinksObj.type == 'google' && aadSponsoredLinksObj.show_links == true) {
+            document.write('<scr' + 'ipt src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></scr' + 'ipt>');
+        } else if (typeof (aadSponsoredLinksObj) == 'undefined') {
+            jQuery('#ad-links').remove();
+        }
+    </script>
+<div id="tracking-pixels"></div>
+
+</div>
+<!-- /#wrap -->
+
+    <div class="vcard">
+        <span class="adr">
+            <span class="locality">
+                <span class="value-title" title="Curitiba" ></span>
+            </span>
+            <abbr class="region" title="Paran&#225;">
+                <span class="value-title" title="PR" ></span>
+            </abbr>
+            <abbr class="country-name" title="Brasil">
+                <span class="value-title" title="BR" ></span>
+            </abbr>
+        </span>
+        <span class="geo">
+            <span class="latitude">
+                <span class="value-title" title="-25.43" ></span>
+            </span>
+            <span class="longitude">
+                <span class="value-title" title="-49.27"></span>
+            </span>
+        </span>
+    </div>
+
+    <script type="text/javascript">
+        var _qoptions = { qacct: 'p-4b4gl_1fWISuU' };
+        if (typeof (apgPageInfoObj) != 'undefined' && apgPageInfoObj.crumb_trail) {
+            _qoptions.labels = apgPageInfoObj.crumb_trail.join('.');
+        }
+    </script>
+    <script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+    <noscript>
+    <a href="http://www.quantcast.com/p-4b4gl_1fWISuU" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-4b4gl_1fWISuU.gif" style="display: none" border="0" height="1" width="1" alt="Quantcast"/></a>
+    </noscript>    <script type="text/javascript">
+        (function () {
+            var d = new Image(1, 1);
+            d.onerror = d.onload = function () {
+                d.onerror = d.onload = null;
+            };
+            d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-accuweather&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
+        })();
+    </script>
+    <noscript>
+    <img style="display:none;" src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-accuweather&amp;cg=0&amp;cc=1&amp;ts=noscript" width="1" height="1" alt="" />
+    </noscript>
+    <script type="text/javascript">
+        var google_conversion_id = 1013122394;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <script>
+        (function() {
+            var _fbq = window._fbq || (window._fbq = []);
+            if (!_fbq.loaded)
+            { var fbds = document.createElement('script'); fbds.async = true; fbds.src = '//connect.facebook.net/en_US/fbds.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fbds, s); _fbq.loaded = true; }
+            _fbq.push(['addPixelId', '513722158765166']);
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', 'PixelInitialized', {}]);
+    </script>
+    <script>
+        (function() {
+            var _fbq = window._fbq || (window._fbq = []);
+            if (!_fbq.loaded) { var fbds = document.createElement('script'); fbds.async = true; fbds.src = '//connect.facebook.net/en_US/fbds.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fbds, s); _fbq.loaded = true; }
+        })();
+        window._fbq = window._fbq || [];
+        window._fbq.push(['track', '6020195729798',
+        {'value':'0.00','currency':'CAD'}
+        ]);
+    </script>
+    <noscript>
+        
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1013122394/?value=0&guid=ON&script=0" />
+        </div>
+        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=513722158765166&ev=PixelInitialized" />
+        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6020195729798&cd[value]=0.00&cd[currency]=CAD&noscript=1" />
+        <img src="http://b.scorecardresearch.com/p?c1=2&c2=6005068&cv=2.0&cj=1" />
+    
+    </noscript>
+    <!-- N/A -->
+
+
+</body>
+</html>

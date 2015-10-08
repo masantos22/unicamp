@@ -1,0 +1,21 @@
+MC558 - Análise de Algoritmos II - Turmas A e B
+Laboratório 1 - Parte B - Pedágio Máximo
+Marcelo Azevedo Goncalves dos Santos
+RA:106140
+
+Para solucionar o problema, criou-se duas listas de adjacencia
+para gravar o grafo e seu transposto e um vetor de posição
+para fazer a inserção das arestas em O(1). Custo total O(E).
+Em seguida aplica-se Dijkstra no grafo para o nó fonte e 
+Dijkstra para o nó destino. Custo O(E + V*logV).
+Por fim, faz-se uma busca linear de todas as arestas (u,v)
+do grafo original e verifica se existe caminho da fonte
+ate v e do destino até v:
+	Caso afirmativo:verifica se a distância da fonte
+	ate u + peso (u,v) + a distância do destino a v (
+	calculada no segundo Dijkstra) é menor que o nosso custo total
+	Caso afirmativo, amarzena-se o peso (u,v)
+	se ele seja maior que o armazenado anteriormente
+Como se faz uma busca por todas as arestas tem-se um custo
+total de O(E). 
+Calculando-se todos os custos, tem-se uma complexidade de O(E + V*logV)
