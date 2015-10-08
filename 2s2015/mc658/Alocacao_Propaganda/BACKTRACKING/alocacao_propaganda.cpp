@@ -103,7 +103,7 @@ void backtracking(int i, double custo, double lucro, int include[]){
 void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N][N], int *S, double *UpperBound) {
 	//cout << "@@@@@@@@NOVO@@@@@@@@" << endl;
 	int Scopy[N];
-	int custo = 0;
+	double custo = 0;
 	// inicializa variaveis globais
 	max_custo = C;
 	size = n;
@@ -134,7 +134,10 @@ void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N
 			custo += p[i].custo; 
 		}
 	}
-	//cout << custo << " <= " << C << " : ";
+	for(int i = 0; i < n; i++)
+		cout << S[i] << " ";
+	cout << " ---- ";
+	cout << custo << " <= " << C << " : ";
 	return ;
 }
 
@@ -217,6 +220,7 @@ int main(int argc,char *argv[]) {
 		if((val_verif > C) || (tempo_resolucao > 10.01*tempoMaximo)) {
 			//4.8 então Numero_Invalidas++;
 			//cout << val_verif << " > " << C << " OR " << tempo_resolucao << " > " << 1.01*tempoMaximo << endl;
+			/*
 			for(int i = 0; i < n; i++)
 				printf("%6d ",S[i]);
 			cout << endl;
@@ -228,13 +232,13 @@ int main(int argc,char *argv[]) {
 			cout << endl;
 			cout << max_lucro;
 			cout << endl;
-
+			*/
 			Numero_Invalidas++;
 		} else {
 			// 4.9 senão se Solução S é otima, então
-			// cout << VAL << " >= "<< otimo;
+			cout << VAL << " >= "<< otimo;
 			if ( VAL >= otimo - 0.001) {
-				//cout << " OK";
+				cout << " OK";
 				//4.10 então Numero_Otimas++
 				Numero_Otimas++;
 				//4.11 Tempo_Otimas += Tempo_resolucao
@@ -250,7 +254,7 @@ int main(int argc,char *argv[]) {
 				Valor_Nao_Otimas += VAL;
 			}
 		}
-		//cout << endl;
+		cout << endl;
 	}
 	
 	/*	>	4.16 // Imprime
