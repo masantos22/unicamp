@@ -14,9 +14,7 @@ typedef struct Prg{
 	double valor;
 	double custo;
 	double valorporcusto;
-	int index;
 } Propaganda;
-
 
 Propaganda p[N];
 double W[N][N];
@@ -25,57 +23,69 @@ double max_lucro;
 double max_custo;
 int bestInclude[N];
 
-int ordena_propaganda(const void *a, const void *b) { 
-    Propaganda *p1 = (Propaganda *)a;
-    Propaganda *p2 = (Propaganda *)b;
-    return 100000 * (p2->valorporcusto - p1->valorporcusto);
-}
-
 bool pode_expandir(int i,double custo, double lucro){
-	int j = i + 1;
-	int index;
-	int k,l;
-	double v;
-	double bound = lucro;
-	double totalcusto = custo;
-
-	if(custo >= max_custo){
+	if(custo >= max_custo)
 		return false;
-	}
-	//cout << custo << " >= " << max_custo << endl;
 
-	while(j <= size && totalcusto + p[j].custo <= max_custo){
-		totalcusto += p[j].custo;
-		bound += p[j].valor;
-		j++;
+	vector<GRBVar> x(N);
+	GRBEnv env = GRBEnv();
+	GRBModel model = GRBModel(env);
+	// disable standard output from Gurobi
+	model.getEnv().set(GRB_IntParam_OutputFlag, 0);
+	GRBLinExpr expr;
+	// gives a name to the problem
+	model.set(GRB_StringAttr_ModelName, "Knapsack Variation"); 
+	// says that lp is a maximization problem
+	// model.set(GRB_IntAttr_ModelSense, GRB_MAXIMIZE); 
+	for (int j = i; j <= size ;j++) {
+		//x[j] = model.addVar(0, 1, 1,GRB_BINARY,"");
+		x[j] = model.addVar(0, 1, NULL,GRB_CONTINUOUS,"");
+		expr += p[j].custo * x[j];
 	}
-	k = j;
-	if(k <= size){
-		bound += (max_custo - totalcusto) * p[k].valorporcusto;
-	}
-	
-	for(k = k + 1; k < size; k++){
-		v = 0;
-		index = p[k].index;
-		for(l = index + 1; index < size; index++){
-			if(W[index][l] > 0)
-				v += W[index][l];
-		}
-		bound += v + 50;
-	}
-	
+	// run update to use model inserted variables
+	model.update(); 
+	model.addConstr(expr <= max_custo - custo);
+	// Process any pending model modifications.
+	model.update(); 
 
-	return bound > max_lucro;
+	GRBQuadExpr obj;
+	
+	for(int j = i; j < size; j++){
+		obj += x[j] * p[j].valor; 
+		for(int k = j + 1; k < size; k++){
+			obj += x[j] * x[k] * W[j][k];
+		}	
+	}
+	model.update();
+	model.setObjective(obj, GRB_MAXIMIZE);
+	model.update();
+	model.write("model.lp");
+	model.optimize();
+	double objvalP = model.get(GRB_DoubleAttr_ObjVal);
+	//cout << objvalP << endl;
+	/*
+	max_lucro = objvalP;
+
+	for (int i=0;i<size;i++) {
+    	if (x[i].get(GRB_DoubleAttr_X) > 0.999){
+    		bestInclude[i] = 1;
+    	}
+    }
+
+    return false;
+    */
+	if(objvalP + lucro < max_lucro)
+		return false;
+	return true;
 }
 
 double novo_lucro(double lucro,int i,int include[]){
 	double extra = 0;
-	int index = p[i].index;
 
 	for(int j = 0; j < i; j++){
 		if(include[j] == 1){
-			extra += W[index][p[j].index];	
-			extra += W[p[j].index][index];
+			extra += W[i][j];	
+			extra += W[j][i];
 		}
 	}
 	return lucro + extra + p[i].valor;
@@ -85,8 +95,9 @@ void backtracking(int i, double custo, double lucro, int include[]){
 	//cout << "Custo: " << custo << " Lucro: " << lucro << " MAX: " << max_lucro << endl;
 	if(custo <= max_custo && lucro > max_lucro){
 		max_lucro = lucro;
-		for(int j = 0; j < i; j++)
+			for(int j = 0; j < i; j++){
 			bestInclude[j] = include[j];
+		}
 	}
 
 	if(pode_expandir(i,custo,lucro)){
@@ -101,9 +112,9 @@ void backtracking(int i, double custo, double lucro, int include[]){
 
 
 void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N][N], int *S, double *UpperBound) {
-	//cout << "@@@@@@@@NOVO@@@@@@@@" << endl;
 	int Scopy[N];
-	int custo = 0;
+	double custo = 0;
+	double l = 0;
 	// inicializa variaveis globais
 	max_custo = C;
 	size = n;
@@ -115,26 +126,24 @@ void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N
 		p[i].valor = V[i];
 		p[i].custo = P[i];
 		p[i].valorporcusto = V[i]/P[i];
-		p[i].index = i;
 		for(int j = 0; j < n; j++) {
 			W[i][j] = w[i][j];
 		}  
 	}
-	// ordena em ordem decrescente de valor/custo de cada propaganda
-	qsort(p,n,sizeof(Propaganda), ordena_propaganda);
 
 	backtracking(0,0,0,Scopy);
 	// salva o melhor resultado
-
-	*UpperBound = max_lucro;
-	// salva items selecionados
 	for(int i = 0; i < n; i++){
+		cout << bestInclude[i] << ' ';
 		if(bestInclude[i] == 1){
-			S[p[i].index] = 1;
-			custo += p[i].custo; 
+			custo += P[i];
+			l += V[i];
 		}
 	}
-	//cout << custo << " <= " << C << " : ";
+	cout << " ---- ";
+	*UpperBound = max_lucro;
+	
+	cout << custo << " <= " << C << " : ";
 	return ;
 }
 
@@ -217,24 +226,12 @@ int main(int argc,char *argv[]) {
 		if((val_verif > C) || (tempo_resolucao > 10.01*tempoMaximo)) {
 			//4.8 então Numero_Invalidas++;
 			//cout << val_verif << " > " << C << " OR " << tempo_resolucao << " > " << 1.01*tempoMaximo << endl;
-			for(int i = 0; i < n; i++)
-				printf("%6d ",S[i]);
-			cout << endl;
-			for(int i = 0; i < n; i++)
-				printf("%.3f ",V[i]);
-			cout << endl;
-			for(int i = 0; i < n; i++)
-				printf("%.3f ",P[i]);
-			cout << endl;
-			cout << max_lucro;
-			cout << endl;
-
 			Numero_Invalidas++;
 		} else {
 			// 4.9 senão se Solução S é otima, então
-			// cout << VAL << " >= "<< otimo;
-			if ( VAL >= otimo - 0.001) {
-				//cout << " OK";
+			cout << VAL << " >= "<< otimo;
+			if ( VAL >= otimo ) {
+				cout << " OK";
 				//4.10 então Numero_Otimas++
 				Numero_Otimas++;
 				//4.11 Tempo_Otimas += Tempo_resolucao
@@ -250,7 +247,7 @@ int main(int argc,char *argv[]) {
 				Valor_Nao_Otimas += VAL;
 			}
 		}
-		//cout << endl;
+		cout << endl;
 	}
 	
 	/*	>	4.16 // Imprime
