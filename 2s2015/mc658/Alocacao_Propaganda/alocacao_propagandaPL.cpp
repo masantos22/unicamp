@@ -14,7 +14,6 @@ typedef struct Prg{
 	double valor;
 	double custo;
 	double valorporcusto;
-	int index;
 } Propaganda;
 
 
@@ -25,55 +24,77 @@ double max_lucro;
 double max_custo;
 int bestInclude[N];
 
-int ordena_propaganda(const void *a, const void *b) { 
-    Propaganda *p1 = (Propaganda *)a;
-    Propaganda *p2 = (Propaganda *)b;
-    return 100000 * (p2->valorporcusto - p1->valorporcusto);
-}
-
 bool pode_expandir(int i,double custo, double lucro){
-	int j = i + 1;
-	int index;
-	int k,l;
-	double v;
-	double bound = lucro;
-	double totalcusto = custo;
-
+	cout << "Got it" << endl;
 	if(custo >= max_custo)
 		return false;
+	cout << "Got it 2" << endl;
+	vector<GRBVar> x(N);
+	cout << "Got it 3" << endl;
+	GRBEnv env = GRBEnv();
+	cout << "Got it 4" << endl;
+	GRBModel model = GRBModel(env);
+	GRBLinExpr expr;
+	cout << "Got it" << endl;
+	// gives a name to the problem
+	model.set(GRB_StringAttr_ModelName, "Knapsack Variation"); 
+	cout << "Got it" << endl;
+	// says that lp is a maximization problem
+	model.set(GRB_IntAttr_ModelSense, GRB_MAXIMIZE); 
+	cout << "Got it" << endl;
+	for (int j = i; j <= size ;j++) {
+		x[j] = model.addVar(0.0, 1.0, p[j].valor,GRB_CONTINUOUS,"");
+		expr += p[j].custo * x[j];
+	}
+	// run update to use model inserted variables
+	model.update(); 
+	model.addConstr(expr <= max_custo - custo);
+	// Process any pending model modifications.
+	model.update(); 
 
-	while(j <= size && totalcusto + p[j].custo <= max_custo){
-		totalcusto += p[j].custo;
-		bound += p[j].valor;
-		j++;
+	cout << "Got it" << endl;
+	GRBQuadExpr obj = 0;
+	for(int j = i; j < size; j++){
+		obj += x[j]*p[j].valor;
+		for(int k = j + 1; k < size; k++){
+			obj += x[j]*x[k]*W[j][k];
+		}	
 	}
-	k = j;
-	if(k <= size){
-		bound += (max_custo - totalcusto) * p[k].valorporcusto;
-	}
-	
-	for(k = k + 1; k < size; k++){
-		v = 0;
-		index = p[k].index;
-		for(l = index + 1; index < size; index++){
-			if(W[index][l] > 0)
-				v += W[index][l];
+
+	model.setObjective(obj);
+	model.update();
+	model.optimize();
+	double objvalP = model.get(GRB_DoubleAttr_ObjVal);
+	cout << objvalP << endl;
+	if(objvalP + lucro < max_lucro)
+		return false;
+	else{
+		max_lucro = objvalP + lucro;
+		return true;
+		/*
+		for(int j = i; j < size; j++){		
+			if(x[j].get(GRB_DoubleAttr_X) < 0.999 && x[i].get(GRB_DoubleAttr_X) > 0.001)
+				return true
 		}
-		bound += v;
+		for(int j = i; j < size; j++){		
+			if(x[j].get(GRB_DoubleAttr_X) >= 0.999)
+				bestInclude[j] = 1;
+			else
+				bestInclude[j] = 0;
+		}
+		max_lucro = objvalP;
+		return false;
+		*/
 	}
-	
-
-	return bound > max_lucro;
 }
 
 double novo_lucro(double lucro,int i,int include[]){
 	double extra = 0;
-	int index = p[i].index;
 
 	for(int j = 0; j < i; j++){
 		if(include[j] == 1){
-			extra += W[index][p[j].index];	
-			extra += W[p[j].index][index];
+			extra += W[i][j];	
+			extra += W[j][i];
 		}
 	}
 	return lucro + extra + p[i].valor;
@@ -112,25 +133,16 @@ void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N
 		p[i].valor = V[i];
 		p[i].custo = P[i];
 		p[i].valorporcusto = V[i]/P[i];
-		p[i].index = i;
 		for(int j = 0; j < n; j++) {
 			W[i][j] = w[i][j];
 		}  
 	}
-	// ordena em ordem decrescente de valor/custo de cada propaganda
-	qsort(p,n,sizeof(Propaganda), ordena_propaganda);
 
 	backtracking(0,0,0,Scopy);
 	// salva o melhor resultado
 
 	*UpperBound = max_lucro;
-	// salva items selecionados
-	for(int i = 0; i < n; i++){
-		if(bestInclude[i] == 1){
-			S[p[i].index] = 1;
-			custo += p[i].custo; 
-		}
-	}
+	
 	cout << custo << " <= " << C << " : ";
 	return ;
 }
