@@ -8,7 +8,7 @@
 #include <time.h>
 #include "gurobi_c++.h"
 
-#define N 10
+#define N 20
 #define QTD_IN 20
 #define ALPHA 5
 
@@ -90,7 +90,6 @@ int main(){
 	
 	
 	for(int nin = 0; nin < QTD_IN; nin++) {
-		
 		double P[N];
 		double V[N];
 		int S[N];

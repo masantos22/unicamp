@@ -1,0 +1,9 @@
+digraph {
+	A [label="Custo: 20
+Lucro: 40"]
+	B [label="Node B"]
+	C
+		A -> B
+		A -> C
+		B -> C
+}
