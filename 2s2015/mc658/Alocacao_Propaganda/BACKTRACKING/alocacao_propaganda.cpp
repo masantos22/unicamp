@@ -30,20 +30,29 @@ int bestInclude[N];
 std::string example;
 FILE *nodes;
 FILE *edges;
+struct timeval ini, fim;
+long maxtime;
 
+// funcao para ordenar as propagandas em ordem decrescente de valor/custo
 int ordena_propaganda(const void *a, const void *b) { 
     Propaganda *p1 = (Propaganda *)a;
     Propaganda *p2 = (Propaganda *)b;
     return 100000 * (p2->valorporcusto - p1->valorporcusto);
 }
 // funcao que verifica se um vertice pode ser expandido ou nao
-bool pode_expandir(int i,double custo, double lucro,int include[]){
+bool pode_expandir(int i,double custo, double lucro){
 	int j = i;
 	int index;
 	int k;
 	double v;
 	double bound = lucro;
 
+	// Verificamos se o tempo de processamento ja atingiu o maximo
+	gettimeofday(&fim, NULL);
+	double tempo_resolucao = (double) (1000 * (fim.tv_sec - ini.tv_sec) + (fim.tv_usec - ini.tv_usec) / (double)1000);
+	if(tempo_resolucao >= maxtime)
+		return false;
+	//cout << tempo_resolucao << endl;
 	// caso custo seja maior que o limite ou 
 	// nao exista mais propagandas a serem consideradas
 	if(custo >= max_custo || i >= size){
@@ -131,6 +140,7 @@ void write_edges(string parent,int i,int include[]){
 }
 // funcao de backtracking para o calculo da melhor combinacao
 void backtracking(int i, double custo, double lucro, int include[]){
+	// Salva no arquivo os vertices que estao sendo criados
 	//std::string id = write_node(i,custo,lucro,include);
 	if(custo <= max_custo && lucro > max_lucro){
 		max_lucro = lucro;
@@ -139,12 +149,14 @@ void backtracking(int i, double custo, double lucro, int include[]){
 		}
 	}
 
-	if(pode_expandir(i,custo,lucro,include)){
+	if(pode_expandir(i,custo,lucro)){
 		include[i] = 1;
+		// Salva no arquivo as arestas
 		//write_edges(id,i+1,include);
 		backtracking(i + 1, custo + p[i].custo,novo_lucro(lucro,i,include),include);
 
 		include[i] = 0;
+		// Salva no arquivo as arestas
 		//write_edges(id,i+1,include);
 		backtracking(i + 1, custo,lucro,include);
 	}
@@ -153,17 +165,26 @@ void backtracking(int i, double custo, double lucro, int include[]){
 }
 
 
-void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N][N], int *S, double *UpperBound) {
-	double custo = 0;
+void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N][N], int *S, double *UpperBound, long t) {
+	// Arquivos para salvar os vertices e arestas
+	/*
 	std::string node = "data/" + example + "_NODES.txt";
 	std::string edge = "data/" + example + "_EDGES.txt";
 	nodes = fopen(node.c_str(),"w");
 	edges = fopen(edge.c_str(),"w");
+	*/
 	double extra;
-
+	double custo = 0;
 	// inicializa variaveis globais
+	// maximo tempo de processamento
+	maxtime = t;
+	// inicializa o clock
+	gettimeofday(&ini, NULL);
+	// maximo custo
 	max_custo = C;
+	// quantidade de propagandas
 	size = n;
+	// lucro maximo atingido
 	max_lucro = 0;
 	for(int i = 0; i < n; i++) {
 		extra = 0;
@@ -180,6 +201,7 @@ void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N
 	// ordena em ordem decrescente de valor/custo de cada propaganda
 	qsort(p,n,sizeof(Propaganda), ordena_propaganda);
 	backtracking(0,0,0,S);
+
 	// salva o melhor resultado
 	*UpperBound = max_lucro;
 
@@ -188,13 +210,10 @@ void seleciona_propagandas(int n, double C, double V[N], double P[N], double w[N
 		S[p[i].index] = bestInclude[i];
 		custo += bestInclude[i] * p[i].custo; 	
 	}
-	for(int i = 0; i < n; i++)
-		cout << S[i] << " ";
-	cout << " ---- ";
-	printf("%.3f <= %.3f : ",custo,C);
 	
-	fclose(nodes);
-	fclose(edges);
+	// Fecha os arquivos de escrita
+	//fclose(nodes);
+	//fclose(edges);
 	return ;
 }
 
@@ -215,7 +234,7 @@ int main(int argc,char *argv[]) {
 	double Valor_Nao_Otimas = 0;
 	int tempoMaximo;
 	sscanf(argv[2], "%d", &tempoMaximo);
-	cout << "Items selecionados   ----       Custo       :       Lucro\n";
+
 	for (int ins = 0; ins < 20; ins++) {
 		// converte int pra string
 		ostringstream convert;
@@ -257,7 +276,7 @@ int main(int argc,char *argv[]) {
 		gettimeofday(&inicio, NULL);
 		
 		// 4.3. Seleciona_Propagandas( E ,S, UB, Maxtime )
-		seleciona_propagandas(n, C, V, P, w, S, &VAL);
+		seleciona_propagandas(n, C, V, P, w, S, &VAL, tempoMaximo);
 		    
 		//4.4. Tempo_Fim <--- Tempo do clock atual do sistema em milisegundos.
 		gettimeofday(&final, NULL);
@@ -275,13 +294,12 @@ int main(int argc,char *argv[]) {
 
 		//4.7. Se Tempo_resolucão > 1.01 * Tmax OU S não é viável
 		//o 1.01 é para dar um tempo de segurança de 1% de tempo que ele pode gastar a mais.
-		if((val_verif > C) || (tempo_resolucao > 10.01*tempoMaximo)) {
+		if((val_verif > C) || (tempo_resolucao > 1.01*tempoMaximo)) {
 			//4.8 então Numero_Invalidas++;
 			Numero_Invalidas++;
 		} else {
 			// 4.9 senão se Solução S é otima, então
-			printf("%.3f >= %.3f\n",VAL,otimo);
-			if ( VAL >= otimo) {
+			if ( VAL >= otimo ) {
 				//4.10 então Numero_Otimas++
 				Numero_Otimas++;
 				//4.11 Tempo_Otimas += Tempo_resolucao
