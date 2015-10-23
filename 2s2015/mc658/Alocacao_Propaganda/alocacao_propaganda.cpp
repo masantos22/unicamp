@@ -23,6 +23,8 @@ double max_lucro;
 double max_custo;
 int bestInclude[N];
 
+int debug;
+
 bool pode_expandir(int i,double custo, double lucro){
 	if(custo >= max_custo)
 		return false;
@@ -39,7 +41,7 @@ bool pode_expandir(int i,double custo, double lucro){
 	// model.set(GRB_IntAttr_ModelSense, GRB_MAXIMIZE); 
 	for (int j = i; j <= size ;j++) {
 		//x[j] = model.addVar(0, 1, 1,GRB_BINARY,"");
-		x[j] = model.addVar(0, 1, NULL,GRB_CONTINUOUS,"");
+		x[j] = model.addVar(0, 1, 1,GRB_CONTINUOUS,"");
 		expr += p[j].custo * x[j];
 	}
 	// run update to use model inserted variables
