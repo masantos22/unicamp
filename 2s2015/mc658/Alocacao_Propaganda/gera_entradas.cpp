@@ -8,7 +8,7 @@
 #include <time.h>
 #include "gurobi_c++.h"
 
-#define N 10
+#define N 30
 #define QTD_IN 20
 #define ALPHA 5
 
