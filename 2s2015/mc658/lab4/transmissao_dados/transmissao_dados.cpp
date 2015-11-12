@@ -15,11 +15,11 @@
 #include <string>
 #include "myutils.h"
 #include <lemon/concepts/digraph.h>
+#include <map>
 #include <lemon/preflow.h>
 using namespace lemon;
 using namespace std;
 #define EPS 0.00001
-#define MAX_VERTICES 100000
 
 int cutcount = 0;
 
@@ -98,51 +98,29 @@ int numero_arestas(Problem_Data &G){
 	return i;
 }
 
-array<list<int>, MAX_VERTICES> get_vertices_arestas(Problem_Data &G){
-       
-	array<list<int>, MAX_VERTICES> vertexes;
-
-	for(ListGraph::EdgeIt e(G.g); e != INVALID; ++e ) {
-		vertexes.at(G.g.id(G.g.u(e))).push_back(G.g.id(e));
-		vertexes.at(G.g.id(G.g.v(e))).push_back(G.g.id(e));    
+map<Edge,int> aresta2id(Problem_Data &G){
+	map<Edge,int> m;
+	int i = 0;
+	for(ListGraph::EdgeIt n(G.g); n != INVALID; ++n){
+		if(m.find(n) == m.end()){
+			m[n] = i;
+			i++;
+		}
 	}
 
-	return vertexes;
+	return m;
 }
 
-
 bool transmissoes(Problem_Data &G, long maxtime) {
-	array<list<int>, MAX_VERTICES> table = get_vertices_arestas(G);
+
+	map<Edge,int> m = aresta2id(G);
 	int n_vertices = numero_vertices(G);
 	int n_arestas = numero_arestas(G);
 	int pares = G.s.size();
 
-	/*
-	for(ListGraph::NodeIt n(G.g); n != INVALID; ++n){
-		cout << G.g.id(n) << "{ ";
-		for (list<int>::iterator it = table.at(G.g.id(n)).begin(); it != table.at(G.g.id(n)).end(); it++){
-			cout << *it << " ";
-		}
-		cout << "}\n";
-	}
-	*/
-	/*
-	cout << "PARES" << endl;
-	for(int i = 0;  i < pares; i++){
-		cout << G.g.id(G.s[i]) << " " << G.g.id(G.t[i]) << endl;
-	}
-
-	cout << "TEMPO" << endl;
-	for(int i = 0;  i < pares; i++){
-		cout << G.Tmax[i] << " " << endl;
-	}
-
-	cout << "Q" << endl;
-	for(int i = 0;  i < pares; i++){
-		cout << G.q[i] << " " << endl;
-	}
-	*/
+	// variavel para salvar as arestas da solucao
 	vector<vector<GRBVar>> arestas(pares,vector<GRBVar>(n_arestas));
+	// variavel para salvar os vertices da solucao
 	vector<vector<GRBVar>> vertices(pares,vector<GRBVar>(n_vertices));
 
 	GRBEnv env = GRBEnv();
@@ -152,35 +130,30 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	GRBLinExpr obj;
 	// gives a name to the problem
 	model.set(GRB_StringAttr_ModelName, "Skype"); 
-	// says that lp is a maximization problem
-	//model.set(GRB_IntAttr_ModelSense, GRB_MINIMIZE);
 	
 	// adiciona as arestas  
 	for (int i = 0; i < pares ;i++) {
 		GRBLinExpr expr;
 		for(ListGraph::EdgeIt e(G.g); e != INVALID; ++e ) {
 			arestas[i][G.g.id(e)] = model.addVar(0.0,1.0,1,GRB_BINARY,"");
-			expr += G.latencia[e] * G.q[i] * arestas[i][G.g.id(e)];
-			//expr += G.latencia[e] * arestas[i][G.g.id(e)];
+			//expr += G.latencia[e] * G.q[i] * arestas[i][G.g.id(e)];
+			expr += G.latencia[e] * arestas[i][G.g.id(e)];
 			obj += G.q[i] * G.custo[e] * arestas[i][G.g.id(e)];
 		}
 		model.update();
-		//cout << i << endl;
-		cout << G.Tmax[i] << endl;
 		model.addConstr(expr <= G.Tmax[i]);
 		model.update();
-		//model.addConstr(expr <= 300);
-		//model.update();
 	}
 	model.update();
+
 	// restringe a capacidade das areastas  
 	for (ListGraph::EdgeIt e(G.g); e != INVALID; ++e) {
 		GRBLinExpr expr;
 		for(int i = 0; i < pares; i++) {
-			expr += arestas[i][G.g.id(e)];
+			expr += arestas[i][m[e]];
+			//expr += arestas[i][G.g.id(e)];
 		}
 		model.update();
-		cout << G.capacidade[e] << endl;
 		model.addConstr(expr <= G.capacidade[e]);
 		model.update();
 		
@@ -191,21 +164,27 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	for (int i = 0; i < pares ;i++) {
 		for(ListGraph::NodeIt n(G.g); n != INVALID; ++n){
 			GRBLinExpr expr;
+			// se o vertice for um dos pares, so uma de suas arestas esta na solucao
 			int k = G.g.id(n);
-			if(k == G.g.id(G.s[i]) || k == G.g.id(G.t[i])){
+			if(n == G.s[i] || n == G.t[i]){
 				vertices[i][k] = model.addVar(0.0,1.0,1.0,GRB_BINARY,"");
-				for (list<int>::iterator it = table.at(k).begin(); it != table.at(k).end(); it++){
-					expr += arestas[i][*it];
+				GRBLinExpr v = vertices[i][k];
+				for(ListGraph::IncEdgeIt e(G.g,n); e != INVALID; ++e ){
+					expr += arestas[i][m[e]];
 				}
 				model.update();
 				model.addConstr(expr == 1);
 				model.update();
+				model.addConstr(v == 1);
+				model.update();
 			}
+			// senao, duas arestas estao na solucao
 			else{
 				vertices[i][k] = model.addVar(0.0,1.0,1.0,GRB_BINARY,"");
 				GRBVar v = vertices[i][k];
-				for (list<int>::iterator it = table.at(k).begin(); it != table.at(k).end(); it++){
-					expr += arestas[i][*it];
+				
+				for(ListGraph::IncEdgeIt e(G.g,n); e != INVALID; ++e ){
+					expr += arestas[i][m[e]];
 				}
 				model.update();
 				model.addConstr(expr == 2*v);
@@ -218,33 +197,41 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	model.setObjective(obj, GRB_MINIMIZE);
 	model.update();
 	model.write("model.lp");
-	//model.addConstr(expr <= max_custo - custo);
-	// Process any pending model modifications.
-	//model.update(); 
-	/*
-	GRBQuadExpr obj;
 	
-	for(int j = i; j < size; j++){
-		obj += x[j] * p[j].valor; 
-		for(int k = j + 1; k < size; k++){
-			obj += x[j] * x[k] * W[j][k];
-		}	
+	model.optimize();
+	G.BestVal = model.get(GRB_DoubleAttr_ObjVal);
+	cout << G.BestVal << endl;
+	
+	G.BestSol.resize(pares);
+
+	// guarda os vertices que fazem parte dos pares das conexoes
+	for(ListGraph::NodeIt n(G.g); n != INVALID; ++n){
+		for(int i = 0; i < pares; i++){
+			if(vertices[i][G.g.id(n)].get(GRB_DoubleAttr_X) > 0.999){
+				G.BestSol[i].push_back(n);
+			}
+		}
 	}
-	model.update();
-	model.setObjective(obj, GRB_MAXIMIZE);
-	model.update();
-	model.write("model.lp");
-	model.optimize();
-	double objvalP = model.get(GRB_DoubleAttr_ObjVal);
+	//cout << G.g.id(G.BestSol.at(0)[0]) << endl;
+	/*
+	cout << "PARES" << endl;
+	for(int i = 0;  i < pares; i++){
+		cout << G.g.id(G.s[i]) << " " << G.g.id(G.t[i]) << endl;
+	}
 	*/
-	
-	model.optimize();
-	//double objvalP = model.get(GRB_DoubleAttr_ObjVal);
-	//cout << objvalP << endl;
+	/*
+	for(vector<vector<Node>>::iterator it = G.BestSol.begin(); it != G.BestSol.end();++it){
+		for(vector<Node>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2){
+			cout << G.g.id(*it2) << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	*/
 	/*
 	for (int i = 0; i < pares;i++) {
-		for (int j = 0; j < n_arestas;j++){
-			if(arestas[i][j].get(GRB_DoubleAttr_X) > 0.999)
+		for (int j = 0; j < n_vertices;j++){
+			if(vertices[i][j].get(GRB_DoubleAttr_X) > 0.999)
 				cout << 1;
 			else
 				cout << 0;
@@ -252,7 +239,7 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 		}
 		cout << endl;
     } 
-    */ 			
+    */			
 	return 0;
 }
 
@@ -281,7 +268,7 @@ int main(int argc, char *argv[])
 
   // uncomment one of these lines to change default pdf reader, or insert new one
   //set_pdfreader("open");    // pdf reader for Mac OS X
-  //set_pdfreader("xpdf");    // pdf reader for Linux
+  set_pdfreader("xpdf");    // pdf reader for Linux
   //set_pdfreader("poppler");  // pdf reader for Linux
   //set_pdfreader("open -a Skim.app");
   // double cutoff;   // used to prune non promissing branches (of the B&B tree)
@@ -292,7 +279,6 @@ int main(int argc, char *argv[])
   string filename = argv[1];
 
   ReadListGraph3(filename, g, NNodes, NEdges, NPairs, nodename, posx, posy, latencia, capacidade, custo, s, t, Tmax, q);
-  cout << NPairs << endl;
   Problem_Data dt(g, nodename, posx, posy, s, t, Tmax, q, custo, capacidade, latencia);
   
  try {
