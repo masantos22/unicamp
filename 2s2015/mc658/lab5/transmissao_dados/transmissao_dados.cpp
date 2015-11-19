@@ -16,14 +16,14 @@
 #include <string>
 #include "myutils.h"
 #include <lemon/concepts/digraph.h>
-#include <lemon/bfs.h>
 #include <map>
 #include <lemon/preflow.h>
 #include "MTRand.h"
 #include "BRKGA.h"
 #include <list>
 #include <vector>
-#include <iomanip>  
+#include <iomanip>
+#include <sys/time.h>
 using namespace lemon;
 using namespace std;
 #define EPS 0.00001
@@ -106,6 +106,8 @@ map<Node,int> map_node2int;
 map<Edge,int> map_edge2int;
 map<int,Node> map_int2node;
 map<int,Edge> map_int2edge;
+struct timeval ini, fim;
+long max_tempo;
 
 
 map<Node,int> node2int(){
@@ -153,7 +155,7 @@ map<int,Edge> int2edge(){
 }
 
 // retorna o custo se o caminho existir, senao retorna 0
-double bfs(int source,int dest,vector<int> arestas_diponiveis,vector<double> &capacidade_arestas,double dados, double Tmax){
+double bfs(int par, int source,int dest,vector<int> arestas_diponiveis,vector<double> &capacidade_arestas,double dados, double Tmax){
 	vector<int> foi_empilhado;
 	queue<int> pilha;
 	vector<int> pai_vertice;
@@ -169,11 +171,8 @@ double bfs(int source,int dest,vector<int> arestas_diponiveis,vector<double> &ca
 	// inicia a bfs
 	pilha.push(source);
 	foi_empilhado[source] = 1;
-	
-	//cout << endl <<"BFS" << endl;
-	//cout << "("<< source << "," << dest << ")" << endl;
-	//cout << "Empilhou: " << pilha.front() << endl;
-	// enquanto a pilha nao estiver vazia
+
+	// enquanto a pilha nao estiver vazia e o caminho nao estiver completo
 	while(!pilha.empty() && caminho_completo == false){
 		int id_atual = pilha.front();
 		//cout << "ATUAL: " << id_atual << endl; 
@@ -198,9 +197,8 @@ double bfs(int source,int dest,vector<int> arestas_diponiveis,vector<double> &ca
 				// se o destino foi alcancado, pare
 				//cout << id_vizinho << " == " << dest << endl;
 				if(id_vizinho == dest){
-					//cout << "CAMINHO COMPLETO" << endl;
+					H->BestSol[par].clear();
 					caminho_completo = true;
-					//cout << endl << "CAMINHO COMPLETO" << endl;
 					break;
 				}
 			}
@@ -211,49 +209,45 @@ double bfs(int source,int dest,vector<int> arestas_diponiveis,vector<double> &ca
 	double tempo = 0;
 
 	while(n != -1 && caminho_completo){
-		//if(n == dest){
-		//	cout << endl<<"(" << source << "," << dest << ")" << endl;
-		//}
+		H->BestSol[par].push_back(map_int2node[n]);
+		// se o ultimo vertice nao foi atingido
 		if(pai_vertice[n] != -1){
-			//cout << n << " ";
 			Node i = map_int2node[n];
 			Node j = map_int2node[pai_vertice[n]];
-			// existe aresta
+			// acha a aresta entre eles
 			Edge e = findEdge(H->g,i,j);
-			//cout << n << " --(" << map_edge2int[e] << ")-- ";
-			
+			// atualiza custo, tempo e capacidades utilizadas			
 			custo += dados*H->custo[e];
 			tempo += H->latencia[e];
 			capacidade_arestas[map_edge2int[e]] += dados;
 		}
-		//else{
-		//	cout << source;
-		//}
-		// atualiza vertice
 		n = pai_vertice[n];
 	}
 
+	// se o tempo superou o limite permitido
 	if(tempo > Tmax){
-		tempo = 99999 * H->NPairs * 2;
+		return BC_INF;
 	}
-		
-	else{
-		tempo = 0;
-	}
-		
+	// se o caminho esta completo
 	if(caminho_completo){
-		return custo + tempo;
+		return custo;
 	}
-		
+	// caso contrario, retorna zero (nao existe caminho ainda)
 	return 0;
 }
 
-// second = node int
+
 double SampleDecoder::decode(const std::vector< double >& chromosome) const {
-	//Bfs<ListGraph> bfs(H->g);
+	// antes de realizar qualquer processamento, verificamos se o tempo maximo de 
+	// execucao nao foi atingido, com uma margem de erro de 1%
+	gettimeofday(&fim, NULL);
+	double tempo_resolucao = (double) (1000 * (fim.tv_sec - ini.tv_sec) + (fim.tv_usec - ini.tv_usec) / 1000.0);
+	if(tempo_resolucao > 0.98*max_tempo)
+		return BC_INF;
+
 	// vetor que verifica se ambos pares foram incluidos
 	vector<int> pares;
-	//
+	// vetor de vertices que potencialmente podem ser alcancados
 	vector<int> vertices;
 	// vetor que armazena as arestas disponiveis
 	vector<int> arestas;
@@ -277,11 +271,10 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	for(int i =0; i < H->s.size();i++){
 		pares.push_back(0);
 	}
-
+	// inicializa os vertices ponteciais
 	for(int i = 0; i < H->NNodes; i++){
 		vertices.push_back(0);
 	}
-
 	// inicializa as arestas utilizadas e o ranking
 	for(int i = 0; i < H->NEdges; i++){
 		capacidade_arestas.push_back(0);
@@ -295,20 +288,14 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	// adiciona uma aresta
 	// se conectou um dos pares NAO conectados
 	// atualiza as capacidades das arestas utilziadas e custo total
-	// por fim, penalidade pelas arestas nao utilizadas
 	while(pares_conectados != numero_pares){
 		consideradas++;
 		Edge e = map_int2edge[ranking[consideradas].second];
-		// atualiza vertices que contem arestas
+		// atualiza vertices que potencialmente podem ser alcancados
 		vertices[map_node2int[H->g.u(e)]] = 1;
 		vertices[map_node2int[H->g.v(e)]] = 1;
-		//cout << endl << consideradas;
 		// adiciona a aresta na solucao
 		arestas[ranking[consideradas].second] = 1;
-		//for(int i = 0 ; i < pares.size(); i++){
-		//	cout << pares[i] << " ";
-		//}
-		//cout << endl << endl;
 
 		// verifica se a nova aresta considerada conecta um novo par
 		for(int i = 0; i < numero_pares; i++){
@@ -316,13 +303,12 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 			int t = map_node2int[H->t[i]];
 			// se o par i nao estiver conectado e ambos possuim arestas
 			if(pares[i] != 1 && vertices[s] > 0 && vertices[t] > 0){
-				double custo_caminho = bfs(map_node2int[H->s[i]],map_node2int[H->t[i]],arestas,capacidade_arestas,H->q[i],H->Tmax[i]);
+				double custo_caminho = bfs(i,map_node2int[H->s[i]],map_node2int[H->t[i]],arestas,capacidade_arestas,H->q[i],H->Tmax[i]);
 				// se o caminho existir, o custo sera maior que zero
 				if(custo_caminho > 0){
-					//cout << "CAMINHO ENCONTRADO: " << map_node2int[H->t[i]] << " " << map_node2int[H->s[i]] << " " << custo_caminho << endl;
 					fit += custo_caminho;
 					pares_conectados++;
-					//cout << endl <<"PARES CONECTADOS: " << pares_conectados ;
+					// par i ja foi conectado
 					pares[i] = 1;
 				}
 			}
@@ -332,19 +318,10 @@ double SampleDecoder::decode(const std::vector< double >& chromosome) const {
 	// adiciona penalidades pra cada capacidades ultrapassadas
 	for(int i = 0; i < H->NEdges; i++){
 		if(capacidade_arestas[i] > H->capacidade[map_int2edge[i]]){
-			//cout << endl << "FIT:" << fit << endl;
-			//cout << "ARESTA MERDADA: " << i << endl;
-			//cout << capacidade_arestas[i] << " > " << H->capacidade[map_int2edge[i]];
-			fit = 99999 * H->NPairs * 2;
+			fit = BC_INF;
 			break;
 		}
-		// aresta foi incluida mas nao foi utilizada
-		//else if(arestas[i] > 0 && capacidade_arestas[i] == 0){
-			//cout << fit << " + 5000 aresta nao utilizada " << endl;
-		//	fit += 500;
-		//}
 	}
-	//cout << fit << endl;
 
 	return fit;
 }
@@ -356,15 +333,18 @@ SampleDecoder::~SampleDecoder() { };
 
 
 bool transmissoes(Problem_Data &G, long maxtime) {
-
+	// inicializa o tempo para execucao
+	gettimeofday(&ini, NULL);
+	max_tempo = maxtime;
 	/*
 	 * Código do Exemplo passado pelo professor
 	 */
+	G.BestSol.resize(G.NPairs);
 	H = &G;
 
 	const unsigned n = G.NEdges;		// size of chromosomes
 	const unsigned p = 100;		// size of population
-	const double pe = 0.30;		// fraction of population to be the elite-set
+	const double pe = 0.2;		// fraction of population to be the elite-set
 	const double pm = 0.10;		// fraction of population to be replaced by mutants
 	const double rhoe = 0.70;	// probability that offspring inherit an allele from elite parent
 	const unsigned K = 3;		// number of independent populations
@@ -389,6 +369,7 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 
 	unsigned relevantGeneration = 1; // last relevant generation: best updated or reset called
 	unsigned generation = 0;		// current generation
+	
 	do {
 		algorithm.evolve();	// evolve the population for one generation
 		
@@ -412,14 +393,19 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 		// Next generation?
 		++generation;
 
-		//cout << generation << "<" << MAX_GENS << endl;
 	} while (generation < MAX_GENS);
-	
-	//std::cout << "Best solution found has objective value = "
-	cout << algorithm.getBestFitness() << std::endl;
 
-	 G.BestVal = algorithm.getBestFitness();
-	
+	G.BestVal = algorithm.getBestFitness();
+	cout << "Vertices utilizados para cada par" << endl;
+	for(int i = 0; i < G.NPairs; i++){
+		for(vector<Node>::iterator it = G.BestSol[i].begin(); it != G.BestSol[i].end();++it){
+			cout << map_node2int[*it] << " ";
+		}
+		cout << endl;
+	}
+	gettimeofday(&fim, NULL);
+	double tempo_resolucao = (double) (1000 * (fim.tv_sec - ini.tv_sec) + (fim.tv_usec - ini.tv_usec) / 1000.0);
+	cout << "Tempo de resolucao " << tempo_resolucao/1000.0 << endl;
 }
 
 
@@ -467,7 +453,7 @@ int main(int argc, char *argv[])
  try {
 
 	bool res = transmissoes(dt, 10000);
-	cout << dt.BestVal << endl;
+	cout << "Melhor custo: " <<dt.BestVal << endl;
 	/*
     double soma=0.0;
     for (ListGraph::NodeIt v(g);v!=INVALID;++v) vcolor[v]=BLUE; // all nodes BLUE
