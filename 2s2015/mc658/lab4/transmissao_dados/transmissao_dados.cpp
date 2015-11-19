@@ -1,6 +1,7 @@
-	// Project and Analysis of Algorithms
+// Project and Analysis of Algorithms
 // Flávio Keidi Miyazawa
 // Problems with connectivity: Minimum Cost k-paths (edge disjoint)
+
 #include <gurobi_c++.h>
 #include <iostream>
 #include <float.h>
@@ -20,8 +21,10 @@
 using namespace lemon;
 using namespace std;
 #define EPS 0.00001
+#include <sys/time.h>
 
 int cutcount = 0;
+struct timeval ini, fim;
 
 class Problem_Data {
 public:
@@ -98,6 +101,7 @@ int numero_arestas(Problem_Data &G){
 	return i;
 }
 
+// mapeia as arestas com as variaveis do programa linear
 map<Edge,int> aresta2id(Problem_Data &G){
 	map<Edge,int> m;
 	int i = 0;
@@ -112,11 +116,25 @@ map<Edge,int> aresta2id(Problem_Data &G){
 }
 
 bool transmissoes(Problem_Data &G, long maxtime) {
+	gettimeofday(&ini, NULL);
+	Edge a;
+	int pares = G.s.size();
 
+	// adicionamos uma aresta entre os vertices pares para garantir que 
+	// haja pelo menos uma solucao no problema. Colocamos um custo e 
+	// e um capacidade bem alto para que essa aresta seja utilizada
+	// somente em caso de entradas sem solucao.
+	/*
+	for(int i = 0;i < pares; i++){
+		a = G.g.addEdge(G.s[i],G.t[i]);
+		G.latencia[a] = G.Tmax[i];
+	    G.capacidade[a] = 10000;
+	    G.custo[a] = 99999/G.q[i];
+	}
+	*/
 	map<Edge,int> m = aresta2id(G);
 	int n_vertices = numero_vertices(G);
-	int n_arestas = numero_arestas(G);
-	int pares = G.s.size();
+	int n_arestas = numero_arestas(G);	
 
 	// variavel para salvar as arestas da solucao
 	vector<vector<GRBVar>> arestas(pares,vector<GRBVar>(n_arestas));
@@ -126,7 +144,7 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	GRBEnv env = GRBEnv();
 	GRBModel model = GRBModel(env);
 	// disable standard output from Gurobi
-	//model.getEnv().set(GRB_IntParam_OutputFlag, 0);
+	model.getEnv().set(GRB_IntParam_OutputFlag, 0);
 	GRBLinExpr obj;
 	// gives a name to the problem
 	model.set(GRB_StringAttr_ModelName, "Skype"); 
@@ -135,13 +153,14 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	for (int i = 0; i < pares ;i++) {
 		GRBLinExpr expr;
 		for(ListGraph::EdgeIt e(G.g); e != INVALID; ++e ) {
-			arestas[i][G.g.id(e)] = model.addVar(0.0,1.0,1,GRB_BINARY,"");
+			arestas[i][m[e]] = model.addVar(0.0,1.0,1,GRB_BINARY,"");
 			//expr += G.latencia[e] * G.q[i] * arestas[i][G.g.id(e)];
-			expr += G.latencia[e] * arestas[i][G.g.id(e)];
-			obj += G.q[i] * G.custo[e] * arestas[i][G.g.id(e)];
+			expr += G.latencia[e] * arestas[i][m[e]];
+			obj += G.q[i] * G.custo[e] * arestas[i][m[e]];
 		}
 		model.update();
 		model.addConstr(expr <= G.Tmax[i]);
+		model.addConstr(obj >= 0);
 		model.update();
 	}
 	model.update();
@@ -150,8 +169,8 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	for (ListGraph::EdgeIt e(G.g); e != INVALID; ++e) {
 		GRBLinExpr expr;
 		for(int i = 0; i < pares; i++) {
-			expr += arestas[i][m[e]];
-			//expr += arestas[i][G.g.id(e)];
+			//expr += arestas[i][m[e]];
+			expr += G.q[i] * arestas[i][m[e]];
 		}
 		model.update();
 		model.addConstr(expr <= G.capacidade[e]);
@@ -164,8 +183,8 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	for (int i = 0; i < pares ;i++) {
 		for(ListGraph::NodeIt n(G.g); n != INVALID; ++n){
 			GRBLinExpr expr;
-			// se o vertice for um dos pares, so uma de suas arestas esta na solucao
 			int k = G.g.id(n);
+			// se o vertice for um dos pares, somente uma de suas arestas esta na solucao
 			if(n == G.s[i] || n == G.t[i]){
 				vertices[i][k] = model.addVar(0.0,1.0,1.0,GRB_BINARY,"");
 				GRBLinExpr v = vertices[i][k];
@@ -200,8 +219,6 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 	
 	model.optimize();
 	G.BestVal = model.get(GRB_DoubleAttr_ObjVal);
-	cout << G.BestVal << endl;
-	
 	G.BestSol.resize(pares);
 
 	// guarda os vertices que fazem parte dos pares das conexoes
@@ -212,34 +229,38 @@ bool transmissoes(Problem_Data &G, long maxtime) {
 			}
 		}
 	}
-	//cout << G.g.id(G.BestSol.at(0)[0]) << endl;
+
+	gettimeofday(&fim, NULL);
+	double tempo_resolucao = (double) (1000 * (fim.tv_sec - ini.tv_sec) + (fim.tv_usec - ini.tv_usec) / 1000.0);
+	//cout << "Tempo para resolucao: " << tempo_resolucao/1000 << " ";
+	// Codigo abaixo para debug. Imprime as arestas escolhidas, o seu custo e 
+	// quantidade de dados transmitidos por ela
 	/*
-	cout << "PARES" << endl;
-	for(int i = 0;  i < pares; i++){
-		cout << G.g.id(G.s[i]) << " " << G.g.id(G.t[i]) << endl;
+	float total = 0;
+	for(ListGraph::EdgeIt e(G.g); e != INVALID; ++e){
+		for(int i = 0; i < pares; i++){
+			if(arestas[i][m[e]].get(GRB_DoubleAttr_X) > 0.999){
+				cout << "CUSTO :" << G.custo[e] << " ";
+				cout << "DADOS :" << G.q[i] << " ";
+				cout << "RESULTADO :" << G.custo[e]*G.q[i] ;
+				cout << endl;
+				total += G.custo[e]*G.q[i];
+			}	
+		}
 	}
-	*/
-	/*
-	for(vector<vector<Node>>::iterator it = G.BestSol.begin(); it != G.BestSol.end();++it){
-		for(vector<Node>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2){
+	cout << "TOTAL: " << total << endl;
+	for(int i = 0; i < pares ; i++){
+		cout << G.g.id(G.s[i]) << "---" << G.g.id(G.t[i]) << endl;
+	}
+
+	for(vector<vector<Node>>::iterator it = G.BestSol.begin(); it != G.BestSol.end(); ++it){
+		for(vector<Node>::iterator it2 = (*it).begin(); it2 !=(*it).end(); ++it2){
 			cout << G.g.id(*it2) << " ";
 		}
 		cout << endl;
 	}
-	cout << endl;
 	*/
-	/*
-	for (int i = 0; i < pares;i++) {
-		for (int j = 0; j < n_vertices;j++){
-			if(vertices[i][j].get(GRB_DoubleAttr_X) > 0.999)
-				cout << 1;
-			else
-				cout << 0;
-			cout << " ";
-		}
-		cout << endl;
-    } 
-    */			
+	//cout << "Arestas " << n_arestas << " ";
 	return 0;
 }
 
@@ -268,7 +289,7 @@ int main(int argc, char *argv[])
 
   // uncomment one of these lines to change default pdf reader, or insert new one
   //set_pdfreader("open");    // pdf reader for Mac OS X
-  set_pdfreader("xpdf");    // pdf reader for Linux
+  //set_pdfreader("xpdf");    // pdf reader for Linux
   //set_pdfreader("poppler");  // pdf reader for Linux
   //set_pdfreader("open -a Skim.app");
   // double cutoff;   // used to prune non promissing branches (of the B&B tree)
@@ -284,7 +305,7 @@ int main(int argc, char *argv[])
  try {
 
 	bool res = transmissoes(dt, 10000);
-	cout << "Melhor resultado: " << dt.BestVal << endl;
+	cout << dt.BestVal << endl;
 	/*
     double soma=0.0;
     for (ListGraph::NodeIt v(g);v!=INVALID;++v) vcolor[v]=BLUE; // all nodes BLUE

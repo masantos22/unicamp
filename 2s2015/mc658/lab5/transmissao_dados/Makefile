@@ -28,7 +28,7 @@ GUROBI_INC = -I$(GUROBI_DIR)/include/
 GUROBI_LIB = -L$(GUROBI_DIR)/lib/  -lgurobi_c++ -lgurobi$(FLAGVERSION)  $(CPPSTDLIB)
 #================= GUROBI =====================================================
 
-#LEMONDIR  = $(shell pwd)/../lemon/lemon-1.3.1
+#LEMONDIR  = ../lemon/lemon-1.3.1
 #LEMONINCDIR  = -I$(LEMONDIR)/include
 #LEMONLIBDIR  = -L$(LEMONDIR)/lib
 #---------------------------------------------
